@@ -20,9 +20,15 @@ dependencies:
   # http #
   http: 0.12.2
 
+  # JsonSerialization #
+  json_annotation: 3.1.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+  # build_runner: <latest_version>
+  json_serializable: 3.5.0
 
 flutter:
 
