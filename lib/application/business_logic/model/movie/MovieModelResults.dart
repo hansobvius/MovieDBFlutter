@@ -1,3 +1,8 @@
+import 'package:json_annotation/json_annotation.dart';
+
+part 'MovieModelResults.g.dart';
+
+@JsonSerializable()
 class MovieModelResults{
   double popularity;
   int voteCount;
@@ -9,7 +14,7 @@ class MovieModelResults{
   String originalLanguage;
   String originalTitle;
   String title;
-  double voteAvarage;
+  double voteAverage;
   String overview;
   String releaseDate;
 
@@ -24,7 +29,11 @@ class MovieModelResults{
       this.originalLanguage,
       this.originalTitle,
       this.title,
-      this.voteAvarage,
+      this.voteAverage,
       this.overview,
       this.releaseDate);
+
+  factory MovieModelResults.fromJson(Map<String, dynamic> json) => _$MovieModelResultsFromJson(json);
+
+  Map<String, dynamic> toJson() => _$MovieModelResultsToJson(this);
 }
