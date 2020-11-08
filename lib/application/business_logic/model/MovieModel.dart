@@ -1,0 +1,7 @@
+class MovieModel{
+
+}
+
+class MovieResults{
+
+}
