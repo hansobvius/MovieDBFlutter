@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'components/MovieSectionScreen.dart';
 
-class Home extends StatelessWidget{
+class HomeScreen extends StatelessWidget{
   @override
   Widget build(BuildContext context){
     return Scaffold(
@@ -11,9 +12,7 @@ class Home extends StatelessWidget{
           centerTitle: true,
         ),
         body: Center(
-          child: Text(
-            'The MovieDB Application'
-          ),
+          child: MovieSectionScreen()
         )
     );
   }

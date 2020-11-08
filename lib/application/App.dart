@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'ui/Home.dart';
+import 'ui/home/HomeScreen.dart';
 
 class App extends StatelessWidget {
   @override
@@ -12,7 +11,7 @@ class App extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: Home(),
+      home: HomeScreen(),
     );
   }
 }
