@@ -7,11 +7,14 @@ class MovieViewModel extends ChangeNotifier{
   Future<MovieModel> _movieModel;
   Future<MovieModel> get movieModel => _movieModel;
 
-  void getMovieService(){
+  Future<MovieModel> getMovieService(){
     _movieModel = serviceApi();
+    return movieModel;
   }
 
+  Future<MovieModel> getService() => serviceApi();
+
   void printValue(){
-    print("${movieModel.then((value) => value.totalResults)}");
+    print("${movieModel.then((value) => value.total_results)}");
   }
 }

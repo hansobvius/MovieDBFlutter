@@ -9,34 +9,34 @@ part of 'MovieModelResults.dart';
 MovieModelResults _$MovieModelResultsFromJson(Map<String, dynamic> json) {
   return MovieModelResults(
     (json['popularity'] as num)?.toDouble(),
-    json['voteCount'] as int,
+    json['vote_count'] as int,
     json['video'] as bool,
-    json['posterPath'] as String,
+    json['poster_path'] as String,
     json['id'] as int,
     json['adult'] as bool,
-    json['backdropPath'] as String,
-    json['originalLanguage'] as String,
-    json['originalTitle'] as String,
+    json['backdrop_path'] as String,
+    json['original_language'] as String,
+    json['original_title'] as String,
     json['title'] as String,
-    (json['voteAverage'] as num)?.toDouble(),
+    (json['vote_average'] as num)?.toDouble(),
     json['overview'] as String,
-    json['releaseDate'] as String,
+    json['release_date'] as String,
   );
 }
 
 Map<String, dynamic> _$MovieModelResultsToJson(MovieModelResults instance) =>
     <String, dynamic>{
       'popularity': instance.popularity,
-      'voteCount': instance.voteCount,
+      'vote_count': instance.vote_count,
       'video': instance.video,
-      'posterPath': instance.posterPath,
+      'poster_path': instance.poster_path,
       'id': instance.id,
       'adult': instance.adult,
-      'backdropPath': instance.backdropPath,
-      'originalLanguage': instance.originalLanguage,
-      'originalTitle': instance.originalTitle,
+      'backdrop_path': instance.backdrop_path,
+      'original_language': instance.original_language,
+      'original_title': instance.original_title,
       'title': instance.title,
-      'voteAverage': instance.voteAverage,
+      'vote_average': instance.vote_average,
       'overview': instance.overview,
-      'releaseDate': instance.releaseDate,
+      'release_date': instance.release_date,
     };

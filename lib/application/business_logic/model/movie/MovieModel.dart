@@ -6,11 +6,11 @@ part 'MovieModel.g.dart';
 @JsonSerializable(explicitToJson: true)
 class MovieModel{
   int page;
-  int totalResults;
-  int totalPages;
-  MovieModelResults results;
+  int total_results;
+  int total_pages;
+  List<MovieModelResults> results;
 
-  MovieModel(this.page, this.totalResults, this.totalPages, this.results);
+  MovieModel(this.page, this.total_results, this.total_pages, this.results);
 
   factory MovieModel.fromJson(Map<String, dynamic> json) => _$MovieModelFromJson(json);
 

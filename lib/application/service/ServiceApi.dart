@@ -15,6 +15,7 @@ Future<MovieModel> serviceApi() async {
   final response = await client.get("${BASE_URL}${VALUE}?api_key=${TOKEN}&language=${DEFAULT_LANGUAGE}&page=${DEFAULT_PAGE}");
 
   if(response.statusCode == 200){
+    print("Result: ${response.body}");
     return parseModel(response.body);
   }else {
     throw Exception('Failed HTTP Request');
