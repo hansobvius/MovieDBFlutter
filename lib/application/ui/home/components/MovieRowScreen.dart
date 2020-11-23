@@ -19,7 +19,9 @@ class MovieRowScreen extends StatelessWidget{
           width: 150,
           child: Wrap(
               children: [
-                  Image.network(getImage(this.movie.results[index].poster_path))
+                Image(
+                  image: NetworkImage(getImage(this.movie.results[index].poster_path)),
+                )
               ]
           )
         );
