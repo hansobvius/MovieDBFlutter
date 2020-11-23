@@ -4,17 +4,32 @@ import 'package:moviedb_flutter/application/service/ServiceApi.dart';
 
 class MovieViewModel extends ChangeNotifier{
 
-  Future<MovieModel> _movieModel;
-  Future<MovieModel> get movieModel => _movieModel;
+  final categories = ["popular", "top_rated", "upcoming"];
 
-  Future<MovieModel> getMovieService(){
-    _movieModel = serviceApi();
+  Future<List<MovieModel>> _movieModel = new Future<List<MovieModel>>(null);
+  Future<List<MovieModel>> get movieModel => _movieModel;
+
+  // FIXME - to resolve
+  Future<List<MovieModel>> getMovieService() async {
+    List<MovieModel> movie;
+    categories.forEach((element) {
+      serviceApi(element).then((value) =>
+        movie.add(value)
+      );
+    });
     return movieModel;
   }
 
-  Future<MovieModel> getService() => serviceApi();
+  Future<MovieModel> getService() => serviceApi("popular");
 
-  void printValue(){
-    print("${movieModel.then((value) => value.total_results)}");
+  void printValue() {
+    movieModel.then((value) =>
+        value.forEach((element) {
+          element.results.forEach((result) {
+            print("Response: ${element.results}");
+          });
+        })
+    );
   }
+
 }
