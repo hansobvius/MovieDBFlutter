@@ -1,33 +1,28 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
+import 'package:mobx/mobx.dart';
 import 'package:moviedb_flutter/application/business_logic/model/movie/MovieModel.dart';
 import 'package:moviedb_flutter/application/service/ServiceApi.dart';
 
-class MovieViewModel extends ChangeNotifier{
+part 'MovieViewModel.g.dart';
+
+class MovieViewModel =_MovieViewModel with _$MovieViewModel;
+
+abstract class _MovieViewModel with Store{
 
   final categories = ["popular", "top_rated", "upcoming"];
 
-  Future<List<MovieModel>> _movieModel = Future<List<MovieModel>>(null);
-  Future<List<MovieModel>> get movieModel => _movieModel;
+  @observable
+  List<MovieModel> movieModel = ObservableList<MovieModel>();
 
-  // FIXME - to resolve
-  Future<List<Future<MovieModel>>> getMovieService() async {
-    List<Future<MovieModel>> futureList = categories.map((url) async {
-      return await compute(serviceApi, url).then((items) => items);
+  @action
+  void getMovieService() {
+    categories.forEach((element) {
+      serviceApi(element).then((value) =>
+          movieModel.add(value)
+      );
     });
-    return futureList;
   }
 
   Future<MovieModel> getService() async => await serviceApi("popular");
-
-  void printValue() {
-    movieModel.then((value) =>
-        value.forEach((element) {
-          element.results.forEach((result) {
-            print("Response: ${element.results}");
-          });
-        })
-    );
-  }
-
 }

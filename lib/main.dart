@@ -5,10 +5,7 @@ import 'application/App.dart';
 import 'application/business_logic/view_model/MovieViewModel.dart';
 
 void main() {
-  runApp(ChangeNotifierProvider(
-    create: (context) => MovieViewModel(),
-    child: App()
-  ));
+  runApp(App());
 }
 
 
