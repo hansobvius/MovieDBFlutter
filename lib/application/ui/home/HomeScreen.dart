@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'components/MovieSectionScreen.dart';
+import 'components/MovieCategories.dart';
 
 class HomeScreen extends StatelessWidget{
   @override
@@ -12,7 +12,7 @@ class HomeScreen extends StatelessWidget{
           centerTitle: true,
         ),
         body: Center(
-          child: MovieSectionScreen()
+          child: MovieCategories()
         )
     );
   }
