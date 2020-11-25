@@ -12,13 +12,13 @@ mixin _$MovieViewModel on _MovieViewModel, Store {
   final _$movieModelAtom = Atom(name: '_MovieViewModel.movieModel');
 
   @override
-  List<MovieModel> get movieModel {
+  ObservableList<MovieModel> get movieModel {
     _$movieModelAtom.reportRead();
     return super.movieModel;
   }
 
   @override
-  set movieModel(List<MovieModel> value) {
+  set movieModel(ObservableList<MovieModel> value) {
     _$movieModelAtom.reportWrite(value, super.movieModel, () {
       super.movieModel = value;
     });

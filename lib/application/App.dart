@@ -9,7 +9,7 @@ class App extends StatelessWidget {
     return Provider<MovieViewModel>(
       create: (_){
         final viewModel = MovieViewModel()
-            ..getService();
+            ..getMovieService();
         return viewModel;
       },
       child: MaterialApp(

@@ -13,7 +13,7 @@ abstract class _MovieViewModel with Store{
   final categories = ["popular", "top_rated", "upcoming"];
 
   @observable
-  List<MovieModel> movieModel = ObservableList<MovieModel>();
+  ObservableList<MovieModel> movieModel = ObservableList<MovieModel>();
 
   @action
   void getMovieService() {
@@ -25,4 +25,12 @@ abstract class _MovieViewModel with Store{
   }
 
   Future<MovieModel> getService() async => await serviceApi("popular");
+
+  void printValue() {
+      movieModel.forEach((element) {
+        element.results.forEach((result) {
+          print("Response: ${element.results}");
+        });
+      });
+  }
 }
