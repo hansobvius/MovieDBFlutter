@@ -10,7 +10,6 @@ class ServiceApi{
     const BASE_URL = 'https://api.themoviedb.org/3/movie/';
     const DEFAULT_LANGUAGE = 'en-US';
     const DEFAULT_PAGE = 1;
-    const VALUE = 'popular';
 
     final http.Client client = http.Client();
 
