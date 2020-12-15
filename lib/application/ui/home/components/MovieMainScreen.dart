@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:moviedb_flutter/application/business_logic/view_model/MovieViewModel.dart';
 import 'package:moviedb_flutter/application/business_logic/helpers/ImageHelper.dart';
+import 'package:moviedb_flutter/application/ui/appcomponents/AppWidgets.dart';
 import 'package:provider/provider.dart';
-import 'MovieHeader.dart';
 import 'MovieCategories.dart';
 
 class MovieMainScreen extends StatefulWidget{
@@ -20,13 +20,19 @@ class _MainMovieScreen extends State<MovieMainScreen>{
         builder: (context) {
           final viewModel = Provider.of<MovieViewModel>(context);
           return viewModel.movieModel.isNotEmpty
-              ? Column(
-                  children: [
-                    MovieHeader(getRandomImage(viewModel.movieModel)),
-                    MovieCategories(movieViewModel: viewModel)
-                  ],
+              ? SingleChildScrollView(
+                  child: Column(
+                      children: [
+                        MovieHeader(getRandomImage(viewModel.movieModel)),
+                        MovieCategories(movieViewModel: viewModel)
+                      ],
+                  ),
               )
-              : Center(child: CircularProgressIndicator());
+              : Column(
+                children: [
+                  Center(child: CircularProgressIndicator()),
+                ],
+              );
         }
       );
   }

@@ -13,7 +13,8 @@ class MovieSection extends StatelessWidget{
   void navigate(BuildContext context, MovieModelResults movie){
     Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => MovieDetailScreen(movieResults: movie)));
+        MaterialPageRoute(builder: (context) => MovieDetailScreen(movieResults: movie))
+    );
   }
 
   @override
