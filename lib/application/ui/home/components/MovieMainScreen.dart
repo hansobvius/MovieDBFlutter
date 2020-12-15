@@ -19,20 +19,22 @@ class _MainMovieScreen extends State<MovieMainScreen>{
     return Observer(
         builder: (context) {
           final viewModel = Provider.of<MovieViewModel>(context);
-          return viewModel.movieModel.isNotEmpty
-              ? SingleChildScrollView(
-                  child: Column(
-                      children: [
-                        MovieHeader(getRandomImage(viewModel.movieModel)),
-                        MovieCategories(movieViewModel: viewModel)
-                      ],
-                  ),
-              )
-              : Column(
+          if (viewModel.movieModel.isNotEmpty) {
+            return SingleChildScrollView(
+              child: Column(
                 children: [
-                  Center(child: CircularProgressIndicator()),
+                  MovieHeader(getRandomImage(viewModel.movieModel)),
+                  MovieCategories(movieViewModel: viewModel)
+                ],
+              ),
+            );
+          } else {
+            return Column(
+                children: [
+                  Expanded(child: Center(child: ProgressBar())),
                 ],
               );
+          }
         }
       );
   }

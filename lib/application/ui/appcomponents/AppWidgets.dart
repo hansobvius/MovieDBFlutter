@@ -12,3 +12,11 @@ Widget MovieHeader(String posterPath){
     ),
   );
 }
+
+Widget ProgressBar(){
+  return CircularProgressIndicator(
+    backgroundColor: Colors.black,
+    valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+    strokeWidth: 8,
+  );
+}
