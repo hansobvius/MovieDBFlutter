@@ -1,12 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:moviedb_flutter/application/business_logic/helpers/ImageHelper.dart';
 import 'package:moviedb_flutter/application/business_logic/model/movie/MovieModel.dart';
+import 'package:moviedb_flutter/application/business_logic/model/movie/MovieModelResults.dart';
+import 'package:moviedb_flutter/application/ui/moviedetail/MovieDetailScreen.dart';
 
 class MovieSection extends StatelessWidget{
 
   MovieModel movie;
 
   MovieSection({ this.movie });
+  
+  void navigate(BuildContext context, MovieModelResults movie){
+    Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => MovieDetailScreen(movieResults: movie)));
+  }
 
   @override
   Widget build(BuildContext context){
@@ -21,8 +29,13 @@ class MovieSection extends StatelessWidget{
             width: 150,
             child: Wrap(
                 children: [
-                  Image(
-                    image: NetworkImage(getImage(this.movie.results[index].poster_path)),
+                  GestureDetector(
+                    onTap: (){
+                      navigate(context, this.movie.results[index]);
+                    },
+                    child: Image(
+                      image: NetworkImage(getImage(this.movie.results[index].poster_path)),
+                    ),
                   )
                 ]
             )

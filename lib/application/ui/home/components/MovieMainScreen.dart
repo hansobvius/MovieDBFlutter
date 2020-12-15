@@ -22,7 +22,7 @@ class _MainMovieScreen extends State<MovieMainScreen>{
           return viewModel.movieModel.isNotEmpty
               ? Column(
                   children: [
-                    MovieHeader(posterPath: getRandomImage(viewModel.movieModel)),
+                    MovieHeader(getRandomImage(viewModel.movieModel)),
                     MovieCategories(movieViewModel: viewModel)
                   ],
               )
