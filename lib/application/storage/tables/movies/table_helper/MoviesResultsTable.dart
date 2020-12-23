@@ -6,7 +6,7 @@ class MoviesResultsTable extends BaseDatabase{
   static final _databaseName = "MoviesDatabase.db";
   static final _databaseVersion = 1;
 
-  final moviesTable = 'movies_table';
+  final table = 'movies_table';
   final columnPopularity = 'popularity';
   final columnVoteCount = 'votecount';
   final columnVideo = 'video';
@@ -27,18 +27,18 @@ class MoviesResultsTable extends BaseDatabase{
   @override
   String entityTable() =>
       '''
-          CREATE TABLE $moviesTable (
+          CREATE TABLE $table (
             $columnId INTEGER PRIMARY KEY,
-            $columnPopularity DOUBLE NOT NULL,
+            $columnPopularity TEXT NOT NULL,
             $columnVoteCount INTEGER NOT NULL,
-            $columnVideo BOOLEAN NOT NULL,
+            $columnVideo INTEGER NOT NULL,
             $columnPosterPath TEXT NOT NULL,
-            $columnAdult BOOLEAN NOT NULL,
+            $columnAdult INTEGER NOT NULL,
             $columnBackdropPath TEXT NOT NULL,
             $columnOriginalLanguage TEXT NOT NULL,
             $columnOriginalTitle TEXT NOT NULL,
             $columnTitle TEXT NOT NULL,
-            $columnVoteAverage DOUBLE NOT NULL,
+            $columnVoteAverage TEXT NOT NULL,
             $columnOverview TEXT NOT NULL,
             $columnReleaseDate TEXT NOT NULL
           )
