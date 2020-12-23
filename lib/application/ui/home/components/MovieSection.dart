@@ -6,9 +6,9 @@ import 'package:moviedb_flutter/application/ui/moviedetail/MovieDetailScreen.dar
 
 class MovieSection extends StatelessWidget{
 
-  MovieModel movie;
+  List<MovieModelResults> movieResults;
 
-  MovieSection({ this.movie });
+  MovieSection({ this.movieResults });
   
   void navigate(BuildContext context, MovieModelResults movie){
     Navigator.push(
@@ -24,7 +24,7 @@ class MovieSection extends StatelessWidget{
       height: 200,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: this.movie.results.length,
+        itemCount: this.movieResults.length,
         itemBuilder: (BuildContext _context, int index){
           return Container(
             padding: EdgeInsets.all(8.0),
@@ -33,10 +33,10 @@ class MovieSection extends StatelessWidget{
                 children: [
                   GestureDetector(
                     onTap: (){
-                      navigate(context, this.movie.results[index]);
+                      navigate(context, this.movieResults[index]);
                     },
                     child: Image(
-                      image: NetworkImage(getImage(this.movie.results[index].poster_path)),
+                      image: NetworkImage(getImage(this.movieResults[index].poster_path)),
                     ),
                   )
                 ]

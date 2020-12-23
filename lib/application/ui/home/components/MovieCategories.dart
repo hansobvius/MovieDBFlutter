@@ -26,7 +26,7 @@ class MovieCategories extends StatelessWidget{
                     ),
                   ),
                 ),
-                MovieSection(movie: movieViewModel.movieModel[index]),
+                MovieSection(movieResults: movieViewModel.movieModel[index].results),
               ],
             );
           }
