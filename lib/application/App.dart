@@ -11,7 +11,9 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return Provider<MovieViewModel>(
       create: (_){
-        return movieViewModel..getMovieService();
+        return movieViewModel
+          ..getMovieService()
+          ..getFavoriteMovies();
       },
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

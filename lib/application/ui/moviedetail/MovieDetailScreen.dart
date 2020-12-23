@@ -17,7 +17,7 @@ class MovieDetailScreen extends StatelessWidget{
       body: Column(
         children: [
           MovieHeader(movieResults.backdrop_path),
-          TitleCard(movieResults.title),
+          TitleCard(title: movieResults.title, isFavorite: false),
           MovieDescription(movieResults.overview)
         ],
       )

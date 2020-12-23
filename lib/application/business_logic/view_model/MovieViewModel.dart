@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:mobx/mobx.dart';
 import 'package:moviedb_flutter/application/business_logic/model/movie/MovieModel.dart';
+import 'package:moviedb_flutter/application/business_logic/model/movie/MovieModelResults.dart';
 import 'package:moviedb_flutter/application/di/ServiceLocator.dart';
 import 'package:moviedb_flutter/application/service/ServiceApi.dart';
 
@@ -12,11 +13,15 @@ class MovieViewModel =_MovieViewModel with _$MovieViewModel;
 abstract class _MovieViewModel with Store{
 
   final service = ServiceLocator.provideIService();
+  final movieRepository = ServiceLocator.provideMovieRepository();
 
   final categories = ["popular", "top_rated", "upcoming"];
 
   @observable
   ObservableList<MovieModel> movieModel = ObservableList<MovieModel>();
+
+  @observable
+  ObservableList<MovieModelResults> favoriteMovies = ObservableList<MovieModelResults>();
 
   @action
   void getMovieService() {
@@ -25,6 +30,15 @@ abstract class _MovieViewModel with Store{
           movieModel.add(value)
       );
     });
+  }
+
+  @action
+  void getFavoriteMovies(){
+    movieRepository.queryListContent().then((values) =>
+      values.forEach((element) {
+        favoriteMovies.add(MovieModelResults.fromJson(element));
+      })
+    );
   }
 
   void printValue() {
