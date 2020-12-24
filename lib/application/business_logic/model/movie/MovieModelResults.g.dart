@@ -40,3 +40,17 @@ Map<String, dynamic> _$MovieModelResultsToJson(MovieModelResults instance) =>
       'overview': instance.overview,
       'release_date': instance.release_date,
     };
+
+bool convertIntegerToBoolean(int value){
+  bool buffer;
+  switch(value){
+    case 0:{
+      buffer = false;
+      break;
+    }
+    case 1:
+      buffer = true;
+      break;
+  }
+  return buffer;
+}

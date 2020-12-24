@@ -5,6 +5,7 @@ import 'package:moviedb_flutter/application/business_logic/helpers/ImageHelper.d
 import 'package:moviedb_flutter/application/ui/appcomponents/AppWidgets.dart';
 import 'package:provider/provider.dart';
 import 'MovieCategories.dart';
+import 'MovieFavorites.dart';
 
 class MovieMainScreen extends StatefulWidget{
 
@@ -24,7 +25,7 @@ class _MainMovieScreen extends State<MovieMainScreen>{
               child: Column(
                 children: [
                   MovieHeader(getRandomImage(viewModel.movieModel)),
-                  MovieCategories(movieViewModel: viewModel)
+                  MovieCategories(movieViewModel: viewModel),
                 ],
               ),
             );
