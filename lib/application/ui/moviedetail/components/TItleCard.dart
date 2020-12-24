@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:moviedb_flutter/application/business_logic/model/movie/MovieModelResults.dart';
+import 'package:moviedb_flutter/application/business_logic/view_model/MovieViewModel.dart';
+import 'package:moviedb_flutter/application/di/ServiceLocator.dart';
 
 class TitleCard extends StatefulWidget{
 
-  final String title;
+  final MovieModelResults movie;
   final bool isFavorite;
 
-  TitleCard({Key key, this.title, this.isFavorite}) : super(key: key);
+  TitleCard({Key key, this.movie, this.isFavorite}) : super(key: key);
 
   @override
   _TitleCardState createState() => _TitleCardState();
@@ -14,17 +17,24 @@ class TitleCard extends StatefulWidget{
 class _TitleCardState extends State<TitleCard>{
 
   bool favorite;
+  MovieViewModel _store;
 
   @override
   void initState() {
+    _store = ServiceLocator.provideMovieViewModel();
     favorite = widget.isFavorite;
     super.initState();
   }
 
-  void favoriteAction(){
+  void setFavoriteAction(MovieModelResults moviesResults){
+    _store.setMovieFavorite(moviesResults);
     setState(() {
       favorite = !favorite;
     });
+  }
+
+  void removeFavoriteAction(){
+
   }
 
   @override
@@ -36,7 +46,7 @@ class _TitleCardState extends State<TitleCard>{
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              '${widget.title}',
+              '${widget.movie.title}',
               style: TextStyle(
                   fontSize: 22,
                   fontWeight: FontWeight.bold
@@ -45,10 +55,10 @@ class _TitleCardState extends State<TitleCard>{
             IconButton(
               icon: Icon(
                   favorite ? Icons.favorite : Icons.favorite_border,
-                  color: favorite ? Colors.red : null
+                  color: favorite ? Colors.yellow : null
               ),
               onPressed: (){
-                favoriteAction();
+                setFavoriteAction(widget.movie);
               },
             )
           ],

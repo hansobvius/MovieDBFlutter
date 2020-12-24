@@ -41,6 +41,11 @@ abstract class _MovieViewModel with Store{
     );
   }
 
+  @action
+  void setMovieFavorite(MovieModelResults moviesResults){
+    movieRepository.insertContent(moviesResults.toJson());
+  }
+
   void printValue() {
       movieModel.forEach((element) {
         element.results.forEach((result) {

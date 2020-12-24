@@ -8,18 +8,18 @@ class MoviesResultsTable extends BaseDatabase{
 
   final table = 'movies_table';
   final columnPopularity = 'popularity';
-  final columnVoteCount = 'votecount';
+  final columnVoteCount = 'vote_count';
   final columnVideo = 'video';
-  final columnPosterPath = 'posterpath';
-  final columnId = '_id';
+  final columnPosterPath = 'poster_path';
+  final columnId = 'id';
   final columnAdult = 'adult';
-  final columnBackdropPath = 'backdroppath';
-  final columnOriginalLanguage = 'originallanguage';
-  final columnOriginalTitle = 'originaltitle';
+  final columnBackdropPath = 'backdrop_path';
+  final columnOriginalLanguage = 'original_language';
+  final columnOriginalTitle = 'original_title';
   final columnTitle = 'title';
-  final columnVoteAverage = 'voteaverage';
+  final columnVoteAverage = 'vote_average';
   final columnOverview = 'overview';
-  final columnReleaseDate = 'releasedate';
+  final columnReleaseDate = 'release_date';
 
   MoviesResultsTable() : super(_databaseName, _databaseVersion);
   static final MoviesResultsTable instance = MoviesResultsTable();
