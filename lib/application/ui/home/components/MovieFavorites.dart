@@ -35,31 +35,45 @@ class _MovieFavorites extends State<MovieFavorites>{
   Widget build(BuildContext _context) {
     return Observer(
         builder: (_context) {
-          return Container(
-            height: _store.favoriteMovies.length != 0 ? 150 : 0,
-            child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: _store.favoriteMovies.length ?? 0,
-                itemBuilder: (BuildContext _context, int index) {
-                  return Container(
-                      padding: EdgeInsets.all(8.0),
-                      width: 150,
-                      child: Wrap(
-                          children: [
-                            GestureDetector(
-                              onTap: () {
-                                navigate(context, _store.favoriteMovies[index]);
-                              },
-                              child: Image(
-                                image: NetworkImage(getImage(
-                                    _store.favoriteMovies[index].poster_path)),
-                              ),
-                            )
-                          ]
-                      )
-                  );
-                }
-            ),
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              if(_store.favoriteMovies.isNotEmpty) Padding(
+                padding: const EdgeInsets.only(left: 8.0),
+                child: Text(
+                  "favorites",
+                  style: TextStyle(
+                      fontSize: 18
+                  ),
+                ),
+              ),
+              Container(
+                height: _store.favoriteMovies.length != 0 ? 200 : 0,
+                child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: _store.favoriteMovies.length ?? 0,
+                    itemBuilder: (BuildContext _context, int index) {
+                      return Container(
+                          padding: EdgeInsets.all(8.0),
+                          width: 150,
+                          child: Wrap(
+                              children: [
+                                GestureDetector(
+                                  onTap: () {
+                                    navigate(context, _store.favoriteMovies[index]);
+                                  },
+                                  child: Image(
+                                    image: NetworkImage(getImage(
+                                        _store.favoriteMovies[index].poster_path)),
+                                  ),
+                                )
+                              ]
+                          )
+                      );
+                    }
+                ),
+              ),
+            ],
           );
         }
     );

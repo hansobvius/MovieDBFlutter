@@ -36,7 +36,8 @@ abstract class _MovieViewModel with Store{
   void getFavoriteMovies(){
     movieRepository.queryListContent().then((values) =>
       values.forEach((element) {
-        favoriteMovies.add(MovieModelResults.fromJson(element));
+        var fav = getResultsFromDatabase(element);
+        favoriteMovies.add(fav);
       })
     );
   }
@@ -52,5 +53,39 @@ abstract class _MovieViewModel with Store{
           print("Response: ${element.results}");
         });
       });
+  }
+
+  MovieModelResults getResultsFromDatabase(Map<String, dynamic> json){
+    var model = MovieModelResults(
+      popularity: returnStringToDouble(json['popularity'] as String),
+      vote_count: json['vote_count'] as int,
+      video: returnIntToBool(json['video'] as int),
+      poster_path: json['poster_path'] as String,
+      id: json['id'] as int,
+      adult: returnIntToBool(json['adult'] as int),
+      backdrop_path: json['backdrop_path'] as String,
+      original_language: json['original_language'] as String,
+      original_title: json['original_title'] as String,
+      title: json['title'] as String,
+      vote_average: returnStringToDouble(json['vote_average'] as String),
+      overview: json['overview'] as String,
+      release_date: json['release_date'] as String,
+    );
+    return model;
+  }
+
+  double returnStringToDouble(String value) => double.parse(value);
+
+  bool returnIntToBool(int value){
+    bool buffer;
+    switch(value){
+      case 0:
+        buffer = true;
+        break;
+      case 1:
+        buffer = false;
+        break;
+    }
+    return buffer;
   }
 }
