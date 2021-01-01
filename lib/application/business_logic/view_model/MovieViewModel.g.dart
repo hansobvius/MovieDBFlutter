@@ -24,6 +24,21 @@ mixin _$MovieViewModel on _MovieViewModel, Store {
     });
   }
 
+  final _$favoriteMoviesAtom = Atom(name: '_MovieViewModel.favoriteMovies');
+
+  @override
+  ObservableList<MovieModelResults> get favoriteMovies {
+    _$favoriteMoviesAtom.reportRead();
+    return super.favoriteMovies;
+  }
+
+  @override
+  set favoriteMovies(ObservableList<MovieModelResults> value) {
+    _$favoriteMoviesAtom.reportWrite(value, super.favoriteMovies, () {
+      super.favoriteMovies = value;
+    });
+  }
+
   final _$_MovieViewModelActionController =
       ActionController(name: '_MovieViewModel');
 
@@ -39,9 +54,32 @@ mixin _$MovieViewModel on _MovieViewModel, Store {
   }
 
   @override
+  void getFavoriteMovies() {
+    final _$actionInfo = _$_MovieViewModelActionController.startAction(
+        name: '_MovieViewModel.getFavoriteMovies');
+    try {
+      return super.getFavoriteMovies();
+    } finally {
+      _$_MovieViewModelActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setMovieFavorite(MovieModelResults moviesResults) {
+    final _$actionInfo = _$_MovieViewModelActionController.startAction(
+        name: '_MovieViewModel.setMovieFavorite');
+    try {
+      return super.setMovieFavorite(moviesResults);
+    } finally {
+      _$_MovieViewModelActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
-movieModel: ${movieModel}
+movieModel: ${movieModel},
+favoriteMovies: ${favoriteMovies}
     ''';
   }
 }

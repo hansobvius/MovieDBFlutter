@@ -6,7 +6,6 @@ import 'package:moviedb_flutter/application/business_logic/view_model/MovieViewM
 import 'package:moviedb_flutter/application/di/ServiceLocator.dart';
 import 'package:moviedb_flutter/application/ui/moviedetail/MovieDetailScreen.dart';
 
-
 class MovieFavorites extends StatefulWidget{
 
   @override
@@ -33,39 +32,36 @@ class _MovieFavorites extends State<MovieFavorites>{
   }
 
   @override
-  Widget build(BuildContext context){
-    return Container(
-      height: 200,
-      child: ListView.builder(
-          scrollDirection: Axis.horizontal,
-          itemCount: _store.favoriteMovies.length ?? 0,
-          itemBuilder: (BuildContext _context, int index){
-            return Observer(
-              builder: (context){
-                if(_store.favoriteMovies.isNotEmpty){
+  Widget build(BuildContext _context) {
+    return Observer(
+        builder: (_context) {
+          return Container(
+            height: _store.favoriteMovies.length != 0 ? 150 : 0,
+            child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: _store.favoriteMovies.length ?? 0,
+                itemBuilder: (BuildContext _context, int index) {
                   return Container(
                       padding: EdgeInsets.all(8.0),
                       width: 150,
                       child: Wrap(
                           children: [
                             GestureDetector(
-                              onTap: (){
+                              onTap: () {
                                 navigate(context, _store.favoriteMovies[index]);
                               },
                               child: Image(
-                                image: NetworkImage(getImage(_store.favoriteMovies[index].poster_path)),
+                                image: NetworkImage(getImage(
+                                    _store.favoriteMovies[index].poster_path)),
                               ),
                             )
                           ]
                       )
                   );
-                } else {
-                  return Container();
                 }
-              }
-            );
-          }
-      ),
+            ),
+          );
+        }
     );
   }
 }

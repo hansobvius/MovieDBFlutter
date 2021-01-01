@@ -26,6 +26,7 @@ class _MainMovieScreen extends State<MovieMainScreen>{
                 children: [
                   MovieHeader(getRandomImage(viewModel.movieModel)),
                   MovieCategories(movieViewModel: viewModel),
+                  MovieFavorites()
                 ],
               ),
             );

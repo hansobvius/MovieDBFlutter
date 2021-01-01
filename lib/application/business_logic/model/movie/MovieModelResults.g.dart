@@ -8,19 +8,19 @@ part of 'MovieModelResults.dart';
 
 MovieModelResults _$MovieModelResultsFromJson(Map<String, dynamic> json) {
   return MovieModelResults(
-    (json['popularity'] as num)?.toDouble(),
-    json['vote_count'] as int,
-    json['video'] as bool,
-    json['poster_path'] as String,
-    json['id'] as int,
-    json['adult'] as bool,
-    json['backdrop_path'] as String,
-    json['original_language'] as String,
-    json['original_title'] as String,
-    json['title'] as String,
-    (json['vote_average'] as num)?.toDouble(),
-    json['overview'] as String,
-    json['release_date'] as String,
+    popularity: (json['popularity'] as num)?.toDouble(),
+    vote_count: json['vote_count'] as int,
+    video: json['video'] as bool,
+    poster_path: json['poster_path'] as String,
+    id: json['id'] as int,
+    adult: json['adult'] as bool,
+    backdrop_path: json['backdrop_path'] as String,
+    original_language: json['original_language'] as String,
+    original_title: json['original_title'] as String,
+    title: json['title'] as String,
+    vote_average: (json['vote_average'] as num)?.toDouble(),
+    overview: json['overview'] as String,
+    release_date: json['release_date'] as String,
   );
 }
 
@@ -40,17 +40,3 @@ Map<String, dynamic> _$MovieModelResultsToJson(MovieModelResults instance) =>
       'overview': instance.overview,
       'release_date': instance.release_date,
     };
-
-bool convertIntegerToBoolean(int value){
-  bool buffer;
-  switch(value){
-    case 0:{
-      buffer = false;
-      break;
-    }
-    case 1:
-      buffer = true;
-      break;
-  }
-  return buffer;
-}

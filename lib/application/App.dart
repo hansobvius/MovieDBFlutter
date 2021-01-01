@@ -3,7 +3,6 @@ import 'package:moviedb_flutter/application/di/ServiceLocator.dart';
 import 'package:provider/provider.dart';
 import 'business_logic/view_model/MovieViewModel.dart';
 import 'ui/home/HomeScreen.dart';
-import 'ui/moviedetail/MovieDetailScreen.dart';
 
 class App extends StatelessWidget {
   final movieViewModel = ServiceLocator.provideMovieViewModel();

@@ -20,8 +20,8 @@ class MovieModelResults{
   String overview;
   String release_date;
 
-  MovieModelResults(
-      this.popularity,
+  MovieModelResults({
+    this.popularity,
       this.vote_count,
       this.video,
       this.poster_path,
@@ -33,7 +33,7 @@ class MovieModelResults{
       this.title,
       this.vote_average,
       this.overview,
-      this.release_date);
+      this.release_date});
 
   factory MovieModelResults.fromJson(Map<String, dynamic> json) => _$MovieModelResultsFromJson(json);
 
