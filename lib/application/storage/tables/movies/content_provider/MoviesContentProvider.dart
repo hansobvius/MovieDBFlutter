@@ -33,4 +33,14 @@ class MovieContentProvider extends BaseProvider<MoviesResultsTable> implements I
     return await db.update(entityDatabase.table, row, where: '$columnId = ?', whereArgs: [row[columnId]]);
   }
 
+  Future<bool> checkSavedMovie(int id) async {
+    if(db == null) await initDataBase();
+    var movieAlreadySaved = await  db.rawQuery("SELECT EXISTS(SELECT 1 FROM ${entityDatabase.table} WHERE id=$id)");
+    print("checkSavedMovie: ${movieAlreadySaved}");
+    return movieAlreadySaved.contains("1");
+  }
+
+  Future deleteRow(int id) async {
+    await db.delete("DELETE FROM ${entityDatabase.table} WHERE id=$id");
+  }
 }

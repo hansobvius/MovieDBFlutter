@@ -6,9 +6,7 @@ import 'package:moviedb_flutter/application/di/ServiceLocator.dart';
 class TitleCard extends StatefulWidget{
 
   final MovieModelResults movie;
-  final bool isFavorite;
-
-  TitleCard({Key key, this.movie, this.isFavorite}) : super(key: key);
+  TitleCard({Key key, this.movie}) : super(key: key);
 
   @override
   _TitleCardState createState() => _TitleCardState();
@@ -16,21 +14,17 @@ class TitleCard extends StatefulWidget{
 
 class _TitleCardState extends State<TitleCard>{
 
-  bool favorite;
   MovieViewModel _store;
 
   @override
   void initState() {
-    _store = ServiceLocator.provideMovieViewModel();
-    favorite = widget.isFavorite;
+    _store = ServiceLocator.provideMovieViewModel()..
+      checkFavoriteMovie(widget.movie.id);
     super.initState();
   }
 
   void setFavoriteAction(MovieModelResults moviesResults){
     _store.setMovieFavorite(moviesResults);
-    setState(() {
-      favorite = !favorite;
-    });
   }
 
   void removeFavoriteAction(){
@@ -54,8 +48,8 @@ class _TitleCardState extends State<TitleCard>{
             ),
             IconButton(
               icon: Icon(
-                  favorite ? Icons.favorite : Icons.favorite_border,
-                  color: favorite ? Colors.yellow : null
+                  _store.isSaved.value ? Icons.favorite : Icons.favorite_border,
+                  color: _store.isSaved.value ? Colors.yellow : null
               ),
               onPressed: (){
                 setFavoriteAction(widget.movie);

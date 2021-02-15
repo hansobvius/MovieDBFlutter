@@ -10,7 +10,7 @@ part 'MovieViewModel.g.dart';
 
 class MovieViewModel =_MovieViewModel with _$MovieViewModel;
 
-abstract class _MovieViewModel with Store{
+abstract class _MovieViewModel with Store {
 
   final service = ServiceLocator.provideIService();
   final movieRepository = ServiceLocator.provideMovieRepository();
@@ -18,11 +18,18 @@ abstract class _MovieViewModel with Store{
   final categories = ["popular", "top_rated", "upcoming"];
 
   @observable
-  ObservableList<MovieModel> movieModel = ObservableList<MovieModel>();
+  Observable<bool> isSaved = Observable(false);
 
   @observable
-  ObservableList<MovieModelResults> favoriteMovies = ObservableList<MovieModelResults>();
+  ObservableList<MovieModel> movieModel = ObservableList<MovieModel>()
+      .asObservable();
 
+  @observable
+  ObservableList<MovieModelResults> favoriteMovies = ObservableList<
+      MovieModelResults>().asObservable();
+
+
+  // TODO - consult repositiory instead service api directly
   @action
   void getMovieService() {
     categories.forEach((element) {
@@ -33,18 +40,32 @@ abstract class _MovieViewModel with Store{
   }
 
   @action
-  void getFavoriteMovies(){
-    movieRepository.queryListContent().then((values) =>
+  void getFavoriteMovies() {
+    movieRepository.queryListContent().then((values) => {
       values.forEach((element) {
-        var fav = getResultsFromDatabase(element);
-        favoriteMovies.add(fav);
-      })
-    );
+        var favorite = getResultsFromDatabase(element);
+        print("$element");
+        favoriteMovies.add(favorite);
+      }),
+    });
   }
 
   @action
-  void setMovieFavorite(MovieModelResults moviesResults){
-    movieRepository.insertContent(moviesResults.toJson());
+  void checkFavoriteMovie(int id) {
+    print("CHECK_FAVORITE");
+    var isSaved = movieRepository.movieSaved(id);
+    isSaved.then((value) => {
+      this.isSaved.value = value,
+      print("CHECK_FAVORITE ${value}")
+    });
+  }
+
+  @action
+  void setMovieFavorite(MovieModelResults moviesResults) {
+    if (isSaved.value)
+      movieRepository.insertContent(moviesResults.toJson()).then((_) => {
+        getFavoriteMovies()
+      });
   }
 
   void printValue() {
@@ -55,37 +76,30 @@ abstract class _MovieViewModel with Store{
       });
   }
 
-  MovieModelResults getResultsFromDatabase(Map<String, dynamic> json){
-    var model = MovieModelResults(
-      popularity: returnStringToDouble(json['popularity'] as String),
-      vote_count: json['vote_count'] as int,
-      video: returnIntToBool(json['video'] as int),
-      poster_path: json['poster_path'] as String,
-      id: json['id'] as int,
-      adult: returnIntToBool(json['adult'] as int),
-      backdrop_path: json['backdrop_path'] as String,
-      original_language: json['original_language'] as String,
-      original_title: json['original_title'] as String,
-      title: json['title'] as String,
-      vote_average: returnStringToDouble(json['vote_average'] as String),
-      overview: json['overview'] as String,
-      release_date: json['release_date'] as String,
-    );
-    return model;
-  }
+  MovieModelResults getResultsFromDatabase(Map<String, dynamic> json) =>
+      MovieModelResults(
+        popularity: returnStringToDouble(json['popularity'] as String),
+        vote_count: json['vote_count'] as int,
+        video: returnIntToBool(json['video'] as int),
+        poster_path: json['poster_path'] as String,
+        id: json['id'] as int,
+        adult: returnIntToBool(json['adult'] as int),
+        backdrop_path: json['backdrop_path'] as String,
+        original_language: json['original_language'] as String,
+        original_title: json['original_title'] as String,
+        title: json['title'] as String,
+        vote_average: returnStringToDouble(json['vote_average'] as String),
+        overview: json['overview'] as String,
+        release_date: json['release_date'] as String,
+      );
 
   double returnStringToDouble(String value) => double.parse(value);
 
   bool returnIntToBool(int value){
-    bool buffer;
     switch(value){
-      case 0:
-        buffer = true;
-        break;
-      case 1:
-        buffer = false;
-        break;
+      case 0: return false;
+      case 1: return true;
+      default: return false;
     }
-    return buffer;
   }
 }

@@ -4,8 +4,8 @@ class MovieRepository{
 
   MovieContentProvider movieContentProvider = MovieContentProvider();
 
-  void insertContent(Map<String, dynamic> row){
-    movieContentProvider.insert(row);
+  Future insertContent(Map<String, dynamic> row) async {
+    await movieContentProvider.insert(row);
   }
 
   void deleteContent(){
@@ -14,5 +14,9 @@ class MovieRepository{
 
   Future<List<Map<String, dynamic>>> queryListContent() async {
     return await movieContentProvider.queryAllRows();
+  }
+
+  Future<bool> movieSaved(int id)  {
+    return  movieContentProvider.checkSavedMovie(id);
   }
 }

@@ -5,6 +5,7 @@ import 'package:moviedb_flutter/application/business_logic/model/movie/MovieMode
 import 'package:moviedb_flutter/application/business_logic/view_model/MovieViewModel.dart';
 import 'package:moviedb_flutter/application/di/ServiceLocator.dart';
 import 'package:moviedb_flutter/application/ui/moviedetail/MovieDetailScreen.dart';
+import 'package:provider/provider.dart';
 
 class MovieFavorites extends StatefulWidget{
 
@@ -34,12 +35,15 @@ class _MovieFavorites extends State<MovieFavorites>{
   @override
   Widget build(BuildContext _context) {
     return Observer(
-        builder: (_context) {
-          return Column(
+      builder: (_context) {
+        var favoriteStore = Provider.of<MovieViewModel>(context);
+        return Offstage(
+          offstage: favoriteStore.favoriteMovies.isNotEmpty ? false : true,
+          child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              if(_store.favoriteMovies.isNotEmpty) Padding(
-                padding: const EdgeInsets.only(left: 8.0),
+              if(favoriteStore.favoriteMovies.isNotEmpty) Padding(
+                padding: const EdgeInsets.only(left: 8.0, top: 8.0),
                 child: Text(
                   "favorites",
                   style: TextStyle(
@@ -48,34 +52,35 @@ class _MovieFavorites extends State<MovieFavorites>{
                 ),
               ),
               Container(
-                height: _store.favoriteMovies.length != 0 ? 200 : 0,
+                height: favoriteStore.favoriteMovies.isNotEmpty ? 200 : 0,
                 child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: _store.favoriteMovies.length ?? 0,
-                    itemBuilder: (BuildContext _context, int index) {
-                      return Container(
-                          padding: EdgeInsets.all(8.0),
-                          width: 150,
-                          child: Wrap(
-                              children: [
-                                GestureDetector(
-                                  onTap: () {
-                                    navigate(context, _store.favoriteMovies[index]);
-                                  },
-                                  child: Image(
-                                    image: NetworkImage(getImage(
-                                        _store.favoriteMovies[index].poster_path)),
-                                  ),
-                                )
-                              ]
+                  scrollDirection: Axis.horizontal,
+                  itemCount: _store.favoriteMovies.length ?? 0,
+                  itemBuilder: (BuildContext _context, int index) {
+                    return Container(
+                      padding: EdgeInsets.all(8.0),
+                      width: 150,
+                      child: Wrap(
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              navigate(context, _store.favoriteMovies[index]);
+                            },
+                            child: Image(
+                              image: NetworkImage(getImage(
+                                  favoriteStore.favoriteMovies[index].poster_path)),
+                            ),
                           )
-                      );
-                    }
+                        ]
+                      )
+                    );
+                  }
                 ),
               ),
             ],
-          );
-        }
+          ),
+        );
+      }
     );
   }
 }
