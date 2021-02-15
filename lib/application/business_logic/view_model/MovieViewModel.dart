@@ -29,7 +29,7 @@ abstract class _MovieViewModel with Store {
       MovieModelResults>().asObservable();
 
 
-  // TODO - consult repositiory instead service api directly
+  // TODO - consult repository instead service api directly
   @action
   void getMovieService() {
     categories.forEach((element) {
@@ -51,21 +51,23 @@ abstract class _MovieViewModel with Store {
   }
 
   @action
-  void checkFavoriteMovie(int id) {
+  Future checkFavoriteMovie(int id) async {
     print("CHECK_FAVORITE");
-    var isSaved = movieRepository.movieSaved(id);
-    isSaved.then((value) => {
-      this.isSaved.value = value,
-      print("CHECK_FAVORITE ${value}")
+    movieRepository.movieSaved(id).then((value) => {
+      print("MOVIE ${value == 1}"),
+      this.isSaved.value = value == 1
     });
   }
 
   @action
   void setMovieFavorite(MovieModelResults moviesResults) {
-    if (isSaved.value)
+    if(!isSaved.value)
       movieRepository.insertContent(moviesResults.toJson()).then((_) => {
+        print("MOVIE SAVED"),
         getFavoriteMovies()
       });
+    else movieRepository.deleteMovie(moviesResults.id).then((value) => print("MOVIE DELETED"));
+    checkFavoriteMovie(moviesResults.id);
   }
 
   void printValue() {

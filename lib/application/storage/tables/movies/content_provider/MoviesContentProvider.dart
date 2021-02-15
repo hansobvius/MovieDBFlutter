@@ -1,6 +1,7 @@
 import 'package:moviedb_flutter/application/storage/core/provider/BaseProvider.dart';
 import 'package:moviedb_flutter/application/storage/core/provider/IProvider.dart';
 import 'package:moviedb_flutter/application/storage/tables/movies/table_helper/MoviesResultsTable.dart';
+import 'package:sqflite/sqflite.dart';
 
 class MovieContentProvider extends BaseProvider<MoviesResultsTable> implements IProvider{
 
@@ -23,25 +24,22 @@ class MovieContentProvider extends BaseProvider<MoviesResultsTable> implements I
   }
 
   @override
-  Future<int> queryRowCount() async {
-    // TODO: implement queryRowCount
-    throw UnimplementedError();
-  }
+  Future<int> queryRowCount() async => throw UnimplementedError();
 
   @override
   Future<int> update(Map<String, dynamic> row, String columnId) async {
     return await db.update(entityDatabase.table, row, where: '$columnId = ?', whereArgs: [row[columnId]]);
   }
 
-  // TODO - returning List<Map<String, dynamic>> from raw query instead a bit validation
-  Future<bool> checkSavedMovie(int id) async {
+  Future<int> checkSavedMovie(int id) async {
     if(db == null) await initDataBase();
-    var movieAlreadySaved = await  db.rawQuery("SELECT EXISTS(SELECT 1 FROM ${entityDatabase.table} WHERE id=$id)");
-    print("checkSavedMovie: ${movieAlreadySaved[0]}");
-    return movieAlreadySaved[0].toString().contains("0");
+    var movieAlreadySaved = Sqflite.firstIntValue(
+        await db.rawQuery("SELECT EXISTS(SELECT 1 FROM ${entityDatabase.table} WHERE id=$id)")
+    );
+    return movieAlreadySaved;
   }
 
   Future deleteRow(int id) async {
-    await db.delete("DELETE FROM ${entityDatabase.table} WHERE id=$id");
+    await db.rawDelete("DELETE FROM ${entityDatabase.table} WHERE id=$id");
   }
 }

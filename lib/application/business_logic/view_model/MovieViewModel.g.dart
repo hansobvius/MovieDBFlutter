@@ -9,6 +9,21 @@ part of 'MovieViewModel.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$MovieViewModel on _MovieViewModel, Store {
+  final _$isSavedAtom = Atom(name: '_MovieViewModel.isSaved');
+
+  @override
+  Observable<bool> get isSaved {
+    _$isSavedAtom.reportRead();
+    return super.isSaved;
+  }
+
+  @override
+  set isSaved(Observable<bool> value) {
+    _$isSavedAtom.reportWrite(value, super.isSaved, () {
+      super.isSaved = value;
+    });
+  }
+
   final _$movieModelAtom = Atom(name: '_MovieViewModel.movieModel');
 
   @override
@@ -37,6 +52,15 @@ mixin _$MovieViewModel on _MovieViewModel, Store {
     _$favoriteMoviesAtom.reportWrite(value, super.favoriteMovies, () {
       super.favoriteMovies = value;
     });
+  }
+
+  final _$checkFavoriteMovieAsyncAction =
+      AsyncAction('_MovieViewModel.checkFavoriteMovie');
+
+  @override
+  Future<dynamic> checkFavoriteMovie(int id) {
+    return _$checkFavoriteMovieAsyncAction
+        .run(() => super.checkFavoriteMovie(id));
   }
 
   final _$_MovieViewModelActionController =
@@ -78,6 +102,7 @@ mixin _$MovieViewModel on _MovieViewModel, Store {
   @override
   String toString() {
     return '''
+isSaved: ${isSaved},
 movieModel: ${movieModel},
 favoriteMovies: ${favoriteMovies}
     ''';

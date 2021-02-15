@@ -16,7 +16,9 @@ class MovieRepository{
     return await movieContentProvider.queryAllRows();
   }
 
-  Future<bool> movieSaved(int id)  {
+  Future<int> movieSaved(int id)  {
     return  movieContentProvider.checkSavedMovie(id);
   }
+
+  Future deleteMovie(int id) async => await movieContentProvider.deleteRow(id);
 }

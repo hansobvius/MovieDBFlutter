@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:moviedb_flutter/application/business_logic/model/movie/MovieModelResults.dart';
 import 'package:moviedb_flutter/application/business_logic/view_model/MovieViewModel.dart';
 import 'package:moviedb_flutter/application/di/ServiceLocator.dart';
@@ -27,10 +28,6 @@ class _TitleCardState extends State<TitleCard>{
     _store.setMovieFavorite(moviesResults);
   }
 
-  void removeFavoriteAction(){
-
-  }
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -46,14 +43,18 @@ class _TitleCardState extends State<TitleCard>{
                   fontWeight: FontWeight.bold
               ),
             ),
-            IconButton(
-              icon: Icon(
-                  _store.isSaved.value ? Icons.favorite : Icons.favorite_border,
-                  color: _store.isSaved.value ? Colors.yellow : null
-              ),
-              onPressed: (){
-                setFavoriteAction(widget.movie);
-              },
+            Observer(
+              builder: (context){
+                return IconButton(
+                  icon: Icon(
+                      _store.isSaved.value ? Icons.favorite : Icons.favorite_border,
+                      color: _store.isSaved.value ? Colors.yellow : null
+                  ),
+                  onPressed: (){
+                    setFavoriteAction(widget.movie);
+                  },
+                );
+              }
             )
           ],
         ),
