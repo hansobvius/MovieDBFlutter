@@ -38,7 +38,7 @@ class MovieContentProvider extends BaseProvider<MoviesResultsTable> implements I
     if(db == null) await initDataBase();
     var movieAlreadySaved = await  db.rawQuery("SELECT EXISTS(SELECT 1 FROM ${entityDatabase.table} WHERE id=$id)");
     print("checkSavedMovie: ${movieAlreadySaved[0]}");
-    return movieAlreadySaved[0].toString().;
+    return movieAlreadySaved[0].toString().contains("0");
   }
 
   Future deleteRow(int id) async {
