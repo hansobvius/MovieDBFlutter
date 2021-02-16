@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:moviedb_flutter/application/business_logic/helpers/ImageHelper.dart';
-import 'package:moviedb_flutter/application/business_logic/model/movie/MovieModel.dart';
 import 'package:moviedb_flutter/application/business_logic/model/movie/MovieModelResults.dart';
 import 'package:moviedb_flutter/application/ui/moviedetail/MovieDetailScreen.dart';
 
 class MovieSection extends StatelessWidget{
 
-  List<MovieModelResults> movieResults;
+  final List<MovieModelResults> movieResults;
 
   MovieSection({ this.movieResults });
   
