@@ -48,7 +48,7 @@ abstract class _MovieViewModel with Store {
   }
 
   @action
-  void checkFavoriteMovie(int id)  {
+  Future checkFavoriteMovie(int id) async {
       print("CHECK_FAVORITE");
       movieRepository.movieSaved(id).then((value) => {
         print("MOVIE ${value == 1}"),

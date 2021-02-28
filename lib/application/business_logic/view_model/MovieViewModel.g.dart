@@ -54,6 +54,15 @@ mixin _$MovieViewModel on _MovieViewModel, Store {
     });
   }
 
+  final _$checkFavoriteMovieAsyncAction =
+      AsyncAction('_MovieViewModel.checkFavoriteMovie');
+
+  @override
+  Future<dynamic> checkFavoriteMovie(int id) {
+    return _$checkFavoriteMovieAsyncAction
+        .run(() => super.checkFavoriteMovie(id));
+  }
+
   final _$_MovieViewModelActionController =
       ActionController(name: '_MovieViewModel');
 
@@ -74,17 +83,6 @@ mixin _$MovieViewModel on _MovieViewModel, Store {
         name: '_MovieViewModel.getFavoriteMovies');
     try {
       return super.getFavoriteMovies();
-    } finally {
-      _$_MovieViewModelActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  void checkFavoriteMovie(int id) {
-    final _$actionInfo = _$_MovieViewModelActionController.startAction(
-        name: '_MovieViewModel.checkFavoriteMovie');
-    try {
-      return super.checkFavoriteMovie(id);
     } finally {
       _$_MovieViewModelActionController.endAction(_$actionInfo);
     }
