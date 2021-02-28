@@ -5,7 +5,7 @@ import 'business_logic/view_model/MovieViewModel.dart';
 import 'ui/home/HomeScreen.dart';
 
 class App extends StatelessWidget {
-  final movieViewModel = ServiceLocator.provideMovieViewModel();
+  final movieViewModel = ServiceLocator.instance.movieViewModel;
   @override
   Widget build(BuildContext context) {
     return Provider<MovieViewModel>(

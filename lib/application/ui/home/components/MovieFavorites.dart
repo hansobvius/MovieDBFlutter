@@ -19,7 +19,7 @@ class _MovieFavorites extends State<MovieFavorites>{
 
   @override
   void initState(){
-    _store = ServiceLocator.provideMovieViewModel()
+    _store = ServiceLocator.instance.movieViewModel
         ..getFavoriteMovies();
     super.initState();
   }

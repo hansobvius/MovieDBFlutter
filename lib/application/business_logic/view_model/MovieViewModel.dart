@@ -9,8 +9,8 @@ class MovieViewModel =_MovieViewModel with _$MovieViewModel;
 
 abstract class _MovieViewModel with Store {
 
-  final service = ServiceLocator.provideIService();
-  final movieRepository = ServiceLocator.provideMovieRepository();
+  final service = ServiceLocator.instance.service;
+  final movieRepository = ServiceLocator.instance.movieRepositoty;
 
   final categories = ["popular", "top_rated", "upcoming"];
 
@@ -28,8 +28,8 @@ abstract class _MovieViewModel with Store {
 
   // TODO - consult repository instead service api directly
   @action
-  void getMovieService() {
-    categories.forEach((element) {
+  void getMovieService()  {
+     categories.forEach((element) {
       service.serviceInterface().serviceApi(element).then((value) =>
           movieModel.add(value)
       );
@@ -37,8 +37,8 @@ abstract class _MovieViewModel with Store {
   }
 
   @action
-  void getFavoriteMovies() {
-    movieRepository.queryListContent().then((values) => {
+  void getFavoriteMovies()   {
+     movieRepository.queryListContent().then((values) => {
       values.forEach((element) {
         var favorite = getResultsFromDatabase(element);
         print("$element");
@@ -48,23 +48,23 @@ abstract class _MovieViewModel with Store {
   }
 
   @action
-  Future checkFavoriteMovie(int id) async {
-    print("CHECK_FAVORITE");
-    movieRepository.movieSaved(id).then((value) => {
-      print("MOVIE ${value == 1}"),
-      this.isSaved.value = value == 1
-    });
+  void checkFavoriteMovie(int id)  {
+      print("CHECK_FAVORITE");
+      movieRepository.movieSaved(id).then((value) => {
+        print("MOVIE ${value == 1}"),
+        this.isSaved.value = value == 1
+      });
   }
 
   @action
-  void setMovieFavorite(MovieModelResults moviesResults) {
+  void setMovieFavorite(MovieModelResults moviesResults)  {
     if(!isSaved.value)
-      movieRepository.insertContent(moviesResults.toJson()).then((_) => {
+       movieRepository.insertContent(moviesResults.toJson()).then((_) => {
         print("MOVIE SAVED"),
         getFavoriteMovies()
       });
-    else movieRepository.deleteMovie(moviesResults.id).then((value) => print("MOVIE DELETED"));
-    checkFavoriteMovie(moviesResults.id);
+    else  movieRepository.deleteMovie(moviesResults.id).then((value) => print("MOVIE DELETED"));
+   checkFavoriteMovie(moviesResults.id);
   }
 
   void printValue() {

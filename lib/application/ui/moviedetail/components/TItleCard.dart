@@ -19,7 +19,7 @@ class _TitleCardState extends State<TitleCard>{
 
   @override
   void initState() {
-    _store = ServiceLocator.provideMovieViewModel()..
+    _store = ServiceLocator.instance.movieViewModel..
       checkFavoriteMovie(widget.movie.id);
     super.initState();
   }
