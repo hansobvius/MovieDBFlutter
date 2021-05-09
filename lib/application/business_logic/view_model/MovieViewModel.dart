@@ -39,11 +39,12 @@ abstract class _MovieViewModel with Store {
   @action
   void getFavoriteMovies()   {
      movieRepository.queryListContent().then((values) => {
-      values.forEach((element) {
-        var favorite = getResultsFromDatabase(element);
-        print("$element");
-        favoriteMovies.add(favorite);
-      }),
+        if(values != null) favoriteMovies.clear(),
+        values.forEach((element) {
+          var favorite = getResultsFromDatabase(element);
+          print("FROM DATABASE: $element");
+          favoriteMovies.add(favorite);
+        }),
     });
   }
 
