@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:moviedb_flutter/application/business_logic/view_model/MovieViewModel.dart';
 import 'package:moviedb_flutter/application/business_logic/helpers/ImageHelper.dart';
-import 'package:moviedb_flutter/application/ui/appcomponents/AppWidgets.dart';
+import 'package:moviedb_flutter/application/ui/app_components/AppWidgets.dart';
 import 'package:provider/provider.dart';
 import 'MovieCategories.dart';
 import 'MovieFavorites.dart';

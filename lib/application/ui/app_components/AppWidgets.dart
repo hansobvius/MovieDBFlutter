@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:moviedb_flutter/application/business_logic/helpers/ImageHelper.dart';
 
-Widget ToolBar(){
+Widget CustomAppBar(){
   return AppBar(title: Text('TheMovieDB'), centerTitle: false, backgroundColor: Colors.black);
 }
 
@@ -17,6 +17,6 @@ Widget ProgressBar(){
   return CircularProgressIndicator(
     backgroundColor: Colors.black,
     valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-    strokeWidth: 8,
+    strokeWidth: 3,
   );
 }
