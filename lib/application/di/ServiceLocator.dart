@@ -7,7 +7,7 @@ class ServiceLocator{
 
   IService _iService;
   MovieViewModel _movieViewModel;
-  MovieRepository _movieRepository;
+  MovieFavoritesRepository _movieRepository;
   MovieContentProvider _movieContentProvider;
 
   static final ServiceLocator instance = ServiceLocator();
@@ -30,9 +30,9 @@ class ServiceLocator{
     return _movieContentProvider;
   }
 
-  MovieRepository get movieRepositoty{
+  MovieFavoritesRepository get movieRepository{
     if(_movieRepository == null)
-      _movieRepository = MovieRepository(
+      _movieRepository = MovieFavoritesRepository(
           movieContentProvider: movieContentProvider
       );
     return _movieRepository;

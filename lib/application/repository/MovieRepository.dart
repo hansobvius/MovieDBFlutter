@@ -1,11 +1,11 @@
 import 'package:flutter/foundation.dart';
 import 'package:moviedb_flutter/application/storage/tables/movies/content_provider/MoviesContentProvider.dart';
 
-class MovieRepository{
+class MovieFavoritesRepository{
 
   final MovieContentProvider movieContentProvider;
 
-  MovieRepository({@required this.movieContentProvider});
+  MovieFavoritesRepository({@required this.movieContentProvider});
 
   Future insertContent(Map<String, dynamic> row) async {
     await movieContentProvider.insert(row);

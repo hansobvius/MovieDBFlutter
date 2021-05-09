@@ -10,7 +10,7 @@ class MovieViewModel =_MovieViewModel with _$MovieViewModel;
 abstract class _MovieViewModel with Store {
 
   final service = ServiceLocator.instance.service;
-  final movieRepository = ServiceLocator.instance.movieRepositoty;
+  final movieRepository = ServiceLocator.instance.movieRepository;
 
   final categories = ["popular", "top_rated", "upcoming"];
 
