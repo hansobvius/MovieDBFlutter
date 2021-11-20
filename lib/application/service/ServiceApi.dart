@@ -13,7 +13,7 @@ class ServiceApi{
 
     final http.Client client = http.Client();
 
-    final response = await client.get("${BASE_URL}${value}?api_key=${TOKEN}&language=${DEFAULT_LANGUAGE}&page=${DEFAULT_PAGE}");
+    final response = await client.get(Uri(scheme: "${BASE_URL}${value}?api_key=${TOKEN}&language=${DEFAULT_LANGUAGE}&page=${DEFAULT_PAGE}"));
 
     if(response.statusCode == 200){
       print("Result: ${response.body}");
