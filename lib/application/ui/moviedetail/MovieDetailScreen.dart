@@ -8,7 +8,7 @@ class MovieDetailScreen extends StatelessWidget{
 
   final MovieModelResults movieResults;
 
-  MovieDetailScreen({this.movieResults});
+  MovieDetailScreen({required this.movieResults});
 
   @override
   Widget build(BuildContext context){
@@ -18,9 +18,9 @@ class MovieDetailScreen extends StatelessWidget{
         padding: EdgeInsets.only(bottom: 8.0),
         child: Column(
           children: [
-            MovieHeader(movieResults.backdrop_path),
+            MovieHeader(movieResults.backdrop_path!),
             TitleCard(movie: movieResults),
-            MovieDescription(movieResults.overview)
+            MovieDescription(movieResults.overview!)
           ],
         ),
       )

@@ -7,7 +7,7 @@ class MovieSection extends StatelessWidget{
 
   final List<MovieModelResults> movieResults;
 
-  MovieSection({ this.movieResults });
+  MovieSection({required this.movieResults});
   
   void navigate(BuildContext context, MovieModelResults movie){
     Navigator.push(
@@ -35,7 +35,7 @@ class MovieSection extends StatelessWidget{
                       navigate(context, this.movieResults[index]);
                     },
                     child: Image(
-                      image: NetworkImage(getImage(this.movieResults[index].poster_path)),
+                      image: NetworkImage(getImage(this.movieResults[index].poster_path!)),
                     ),
                   )
                 ]

@@ -5,14 +5,14 @@ import 'MovieSection.dart';
 
 class MovieCategories extends StatelessWidget{
   final MovieViewModel movieViewModel;
-  MovieCategories({Key key, this.movieViewModel}): super(key: key);
+  MovieCategories({Key? key, required this.movieViewModel}): super(key: key);
   @override
   Widget build(BuildContext context){
       return ListView.builder(
           physics: const NeverScrollableScrollPhysics(),
           shrinkWrap: true,
           scrollDirection: Axis.vertical,
-          itemCount: movieViewModel.movieModel.length,
+          itemCount: movieViewModel.movieModel!.length,
           itemBuilder: (BuildContext _context, int index){
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -26,7 +26,7 @@ class MovieCategories extends StatelessWidget{
                     ),
                   ),
                 ),
-                MovieSection(movieResults: movieViewModel.movieModel[index].results),
+                MovieSection(movieResults: movieViewModel.movieModel![index].results),
               ],
             );
           }

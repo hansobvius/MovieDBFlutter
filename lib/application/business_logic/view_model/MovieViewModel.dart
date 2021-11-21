@@ -15,15 +15,13 @@ abstract class _MovieViewModel with Store {
   final categories = ["popular", "top_rated", "upcoming"];
 
   @observable
-  Observable<bool> isSaved = Observable(false);
+  bool? isSaved;
 
   @observable
-  ObservableList<MovieModel> movieModel = ObservableList<MovieModel>()
-      .asObservable();
+  ObservableList<MovieModel>? movieModel = ObservableList<MovieModel>().asObservable();
 
   @observable
-  ObservableList<MovieModelResults> favoriteMovies = ObservableList<
-      MovieModelResults>().asObservable();
+  ObservableList<MovieModelResults>? favoriteMovies = ObservableList<MovieModelResults>().asObservable();
 
 
   // TODO - consult repository instead service api directly
@@ -31,7 +29,7 @@ abstract class _MovieViewModel with Store {
   void getMovieService()  {
      categories.forEach((element) {
       service.serviceInterface().serviceApi(element).then((value) =>
-          movieModel.add(value)
+          movieModel!.add(value)
       );
     });
   }
@@ -39,11 +37,11 @@ abstract class _MovieViewModel with Store {
   @action
   void getFavoriteMovies()   {
      movieRepository.queryListContent().then((values) => {
-        if(values != null) favoriteMovies.clear(),
+        if(values != null) favoriteMovies!.clear(),
         values.forEach((element) {
           var favorite = getResultsFromDatabase(element);
           print("FROM DATABASE: $element");
-          favoriteMovies.add(favorite);
+          favoriteMovies!.add(favorite);
         }),
     });
   }
@@ -53,23 +51,23 @@ abstract class _MovieViewModel with Store {
       print("CHECK_FAVORITE");
       movieRepository.movieSaved(id).then((value) => {
         print("MOVIE ${value == 1}"),
-        this.isSaved.value = value == 1
+        this.isSaved = value == 1,
       });
   }
 
   @action
-  void setMovieFavorite(MovieModelResults moviesResults)  {
-    if(!isSaved.value)
-       movieRepository.insertContent(moviesResults.toJson()).then((_) => {
+  void setMovieFavorite(MovieModelResults? moviesResults)  {
+    if(!isSaved!)
+       movieRepository.insertContent(moviesResults!.toJson()).then((_) => {
         print("MOVIE SAVED"),
         getFavoriteMovies()
       });
-    else  movieRepository.deleteMovie(moviesResults.id).then((value) => print("MOVIE DELETED"));
-   checkFavoriteMovie(moviesResults.id);
+    else  movieRepository.deleteMovie(moviesResults!.id).then((value) => print("MOVIE DELETED"));
+   checkFavoriteMovie(moviesResults.id!);
   }
 
   void printValue() {
-      movieModel.forEach((element) {
+      movieModel!.forEach((element) {
         element.results.forEach((result) {
           print("Response: ${element.results}");
         });
@@ -97,7 +95,6 @@ abstract class _MovieViewModel with Store {
 
   bool returnIntToBool(int value){
     switch(value){
-      case 0: return false;
       case 1: return true;
       default: return false;
     }

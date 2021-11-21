@@ -5,33 +5,33 @@ import 'package:moviedb_flutter/application/storage/tables/movies/content_provid
 
 class ServiceLocator{
 
-  IService _iService;
-  MovieViewModel _movieViewModel;
-  MovieFavoritesRepository _movieRepository;
-  MovieContentProvider _movieContentProvider;
+  late IService _iService;
+  late MovieViewModel _movieViewModel;
+  late MovieFavoritesRepository _movieRepository;
+  late MovieContentProvider _movieContentProvider;
 
   static final ServiceLocator instance = ServiceLocator();
 
   IService get service {
-    if(_iService == null)
-      _iService = IService();
+    // if(_iService == null)
+    _iService = IService();
     return _iService;
   }
 
   MovieViewModel get movieViewModel{
-    if(_movieViewModel == null)
-      _movieViewModel = MovieViewModel();
+    // if(_movieViewModel == null)
+    _movieViewModel = MovieViewModel();
     return _movieViewModel;
   }
 
   MovieContentProvider get movieContentProvider{
-    if(_movieContentProvider == null)
-      _movieContentProvider = MovieContentProvider();
+    // if(_movieContentProvider == null)
+    _movieContentProvider = MovieContentProvider();
     return _movieContentProvider;
   }
 
   MovieFavoritesRepository get movieRepository{
-    if(_movieRepository == null)
+    // if(_movieRepository == null)
       _movieRepository = MovieFavoritesRepository(
           movieContentProvider: movieContentProvider
       );
