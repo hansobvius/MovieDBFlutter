@@ -55,7 +55,7 @@ class _MovieFavorites extends State<MovieFavorites>{
                 height: favoriteStore.favoriteMovies!.isNotEmpty ? 200 : 0,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  itemCount: _store.favoriteMovies!.length ?? 0,
+                  itemCount: _store.favoriteMovies!.length,
                   itemBuilder: (BuildContext _context, int index) {
                     return Container(
                       padding: EdgeInsets.all(8.0),

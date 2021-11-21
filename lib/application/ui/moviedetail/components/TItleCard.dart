@@ -47,8 +47,12 @@ class _TitleCardState extends State<TitleCard>{
               builder: (context){
                 return IconButton(
                   icon: Icon(
-                      _store.isSaved! ? Icons.favorite : Icons.favorite_border,
-                      color: _store.isSaved! ? Colors.yellow : null
+                      (_store.isSaved != null && _store.isSaved!)
+                          ? Icons.favorite
+                          : Icons.favorite_border,
+                      color: (_store.isSaved != null && _store.isSaved!)
+                          ? Colors.yellow
+                          : null
                   ),
                   onPressed: (){
                     setFavoriteAction(widget.movie);
