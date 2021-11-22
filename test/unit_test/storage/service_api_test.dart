@@ -1,6 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
+import 'package:moviedb_flutter/application/business_logic/model/movie/MovieModel.dart';
+import 'package:moviedb_flutter/application/business_logic/model/movie/MovieModelResults.dart';
 import 'package:moviedb_flutter/application/service/ServiceApi.dart';
 import 'package:moviedb_flutter/application/storage/tables/movies/table_helper/MoviesResultsTable.dart';
 
@@ -15,8 +17,6 @@ const int DEFAULT_PAGE = 1;
 @GenerateMocks([ServiceApi])
 void main() {
 
-
-
   MockServiceApi? api;
 
   group('SERVICE API GROUP TEST', () {
@@ -26,9 +26,7 @@ void main() {
     });
 
     test('MOVIE REQUEST TEST', () async {
-      // when(api!.serviceApi('popular')).thenAnswer((movies) {
-      //   expect((movies as List<MoviesResultsTable>).isNotEmpty, true);
-      // });
+      when(api!.serviceApi('popular')).thenAnswer((movies) async => Future.value(movies as MovieModel));
     });
 
     tearDown(() {
