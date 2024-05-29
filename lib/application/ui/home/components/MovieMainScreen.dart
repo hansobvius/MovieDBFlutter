@@ -24,7 +24,7 @@ class _MainMovieScreen extends State<MovieMainScreen>{
             return SingleChildScrollView(
               child: Column(
                 children: [
-                  MovieHeader(getRandomImage(viewModel.movieModel)),
+                  movieHeader(getRandomImage(viewModel.movieModel)),
                   MovieCategories(movieViewModel: viewModel),
                   MovieFavorites()
                 ],
@@ -33,7 +33,7 @@ class _MainMovieScreen extends State<MovieMainScreen>{
           } else {
             return Column(
                 children: [
-                  Expanded(child: Center(child: ProgressBar())),
+                  Expanded(child: Center(child: progressBar())),
                 ],
               );
           }

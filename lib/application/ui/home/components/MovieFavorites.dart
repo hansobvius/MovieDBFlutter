@@ -15,7 +15,7 @@ class MovieFavorites extends StatefulWidget{
 
 class _MovieFavorites extends State<MovieFavorites>{
 
-  MovieViewModel _store;
+  late MovieViewModel _store;
 
   @override
   void initState(){
@@ -42,7 +42,7 @@ class _MovieFavorites extends State<MovieFavorites>{
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              if(favoriteStore.favoriteMovies.isNotEmpty) Padding(
+              if (favoriteStore.favoriteMovies.isNotEmpty) Padding(
                 padding: const EdgeInsets.only(left: 8.0, top: 8.0),
                 child: Text(
                   "favorites",
@@ -55,7 +55,7 @@ class _MovieFavorites extends State<MovieFavorites>{
                 height: favoriteStore.favoriteMovies.isNotEmpty ? 200 : 0,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  itemCount: _store.favoriteMovies.length ?? 0,
+                  itemCount: _store!.favoriteMovies.length ?? 0,
                   itemBuilder: (BuildContext _context, int index) {
                     return Container(
                       padding: EdgeInsets.all(8.0),
@@ -68,7 +68,7 @@ class _MovieFavorites extends State<MovieFavorites>{
                             },
                             child: Image(
                               image: NetworkImage(getImage(
-                                  favoriteStore.favoriteMovies[index].poster_path)),
+                                  favoriteStore.favoriteMovies[index].posterPath)),
                             ),
                           )
                         ]

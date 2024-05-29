@@ -5,10 +5,10 @@ abstract class BaseProvider<T extends BaseDatabase>{
 
   final T entityDatabase;
 
-  Database _db;
-  Database get db => _db;
+  Database? _db;
+  Database? get db => _db;
 
-  BaseProvider({this.entityDatabase}){
+  BaseProvider({required this.entityDatabase}){
     initDataBase();
   }
 

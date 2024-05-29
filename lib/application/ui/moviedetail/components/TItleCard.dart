@@ -7,7 +7,7 @@ import 'package:moviedb_flutter/application/di/ServiceLocator.dart';
 class TitleCard extends StatefulWidget{
 
   final MovieModelResults movie;
-  TitleCard({Key key, this.movie}) : super(key: key);
+  TitleCard({Key? key, required this.movie}) : super(key: key);
 
   @override
   _TitleCardState createState() => _TitleCardState();
@@ -15,7 +15,7 @@ class TitleCard extends StatefulWidget{
 
 class _TitleCardState extends State<TitleCard>{
 
-  MovieViewModel _store;
+  late MovieViewModel _store;
 
   @override
   void initState() {

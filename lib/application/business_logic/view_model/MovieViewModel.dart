@@ -79,18 +79,18 @@ abstract class _MovieViewModel with Store {
   MovieModelResults getResultsFromDatabase(Map<String, dynamic> json) =>
       MovieModelResults(
         popularity: returnStringToDouble(json['popularity'] as String),
-        vote_count: json['vote_count'] as int,
+        voteCount: json['vote_count'] as int,
         video: returnIntToBool(json['video'] as int),
-        poster_path: json['poster_path'] as String,
+        posterPath: json['poster_path'] as String,
         id: json['id'] as int,
         adult: returnIntToBool(json['adult'] as int),
-        backdrop_path: json['backdrop_path'] as String,
-        original_language: json['original_language'] as String,
-        original_title: json['original_title'] as String,
+        backdropPath: json['backdrop_path'] as String,
+        originalLanguage: json['original_language'] as String,
+        originalTitle: json['original_title'] as String,
         title: json['title'] as String,
-        vote_average: returnStringToDouble(json['vote_average'] as String),
+        voteAverage: returnStringToDouble(json['vote_average'] as String),
         overview: json['overview'] as String,
-        release_date: json['release_date'] as String,
+        releaseDate: json['release_date'] as String,
       );
 
   double returnStringToDouble(String value) => double.parse(value);

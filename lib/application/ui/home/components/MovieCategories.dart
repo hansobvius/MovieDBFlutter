@@ -4,8 +4,11 @@ import 'package:moviedb_flutter/application/business_logic/view_model/MovieViewM
 import 'MovieSection.dart';
 
 class MovieCategories extends StatelessWidget{
+
   final MovieViewModel movieViewModel;
-  MovieCategories({Key key, this.movieViewModel}): super(key: key);
+
+  MovieCategories({Key? key, required this.movieViewModel}): super(key: key);
+
   @override
   Widget build(BuildContext context){
       return ListView.builder(

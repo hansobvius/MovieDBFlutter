@@ -25,7 +25,7 @@ class ServiceApi{
 
   MovieModel parseModel(String responseBody){
     Map obj = jsonDecode(responseBody);
-    var movies = MovieModel.fromJson(obj);
+    var movies = MovieModel.fromJson(obj as Map<String, dynamic>);
     return movies;
   }
 }

@@ -5,7 +5,7 @@ class MovieFavoritesRepository{
 
   final MovieContentProvider movieContentProvider;
 
-  MovieFavoritesRepository({@required this.movieContentProvider});
+  MovieFavoritesRepository({required this.movieContentProvider});
 
   Future insertContent(Map<String, dynamic> row) async {
     await movieContentProvider.insert(row);

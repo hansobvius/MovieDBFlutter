@@ -5,33 +5,33 @@ part 'MovieModelResults.g.dart';
 @JsonSerializable()
 class MovieModelResults{
   double popularity;
-  int vote_count;
+  int voteCount;
   bool video;
-  String poster_path;
+  String posterPath;
   int id;
   bool adult;
-  String backdrop_path;
-  String original_language;
-  String original_title;
+  String backdropPath;
+  String originalLanguage;
+  String originalTitle;
   String title;
-  double vote_average;
+  double voteAverage;
   String overview;
-  String release_date;
+  String releaseDate;
 
   MovieModelResults({
-    this.popularity,
-      this.vote_count,
-      this.video,
-      this.poster_path,
-      this.id,
-      this.adult,
-      this.backdrop_path,
-      this.original_language,
-      this.original_title,
-      this.title,
-      this.vote_average,
-      this.overview,
-      this.release_date});
+    required this.popularity,
+    required this.voteCount,
+    required this.video,
+    required this.posterPath,
+    required this.id,
+    required this.adult,
+    required this.backdropPath,
+    required this.originalLanguage,
+    required this.originalTitle,
+    required this.title,
+    required this.voteAverage,
+    required this.overview,
+    required this.releaseDate});
 
   factory MovieModelResults.fromJson(Map<String, dynamic> json) => _$MovieModelResultsFromJson(json);
 
