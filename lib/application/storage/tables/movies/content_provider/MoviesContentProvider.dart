@@ -36,7 +36,7 @@ class MovieContentProvider extends BaseProvider<MoviesResultsTable> implements I
     var movieAlreadySaved = Sqflite.firstIntValue(
         await db!.rawQuery("SELECT EXISTS(SELECT 1 FROM ${entityDatabase.table} WHERE id=$id)")
     );
-    return movieAlreadySaved;
+    return movieAlreadySaved!;
   }
 
   Future deleteRow(int id) async {

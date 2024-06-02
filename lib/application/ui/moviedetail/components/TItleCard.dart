@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:moviedb_flutter/application/business_logic/model/movie/MovieModelResults.dart';
-import 'package:moviedb_flutter/application/business_logic/view_model/MovieViewModel.dart';
+import 'package:moviedb_flutter/application/business_logic/model/movie/movie_model_results.dart';
+import 'package:moviedb_flutter/application/business_logic/view_model/movie_view_model.dart';
 import 'package:moviedb_flutter/application/di/ServiceLocator.dart';
 
 class TitleCard extends StatefulWidget{

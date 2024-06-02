@@ -1,4 +1,4 @@
-import 'package:moviedb_flutter/application/business_logic/view_model/MovieViewModel.dart';
+import 'package:moviedb_flutter/application/business_logic/view_model/movie_view_model.dart';
 import 'package:moviedb_flutter/application/repository/MovieRepository.dart';
 import 'package:moviedb_flutter/application/service/IService.dart';
 import 'package:moviedb_flutter/application/storage/tables/movies/content_provider/MoviesContentProvider.dart';

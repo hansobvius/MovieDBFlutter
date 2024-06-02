@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:moviedb_flutter/application/di/ServiceLocator.dart';
 import 'package:provider/provider.dart';
-import 'business_logic/view_model/MovieViewModel.dart';
+import 'business_logic/view_model/movie_view_model.dart';
 import 'ui/home/HomeScreen.dart';
 
 class App extends StatelessWidget {

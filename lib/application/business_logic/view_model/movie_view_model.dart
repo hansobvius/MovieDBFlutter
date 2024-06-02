@@ -1,9 +1,9 @@
 import 'package:mobx/mobx.dart';
-import 'package:moviedb_flutter/application/business_logic/model/movie/MovieModel.dart';
-import 'package:moviedb_flutter/application/business_logic/model/movie/MovieModelResults.dart';
+import 'package:moviedb_flutter/application/business_logic/model/movie/movie_model.dart';
+import 'package:moviedb_flutter/application/business_logic/model/movie/movie_model_results.dart';
 import 'package:moviedb_flutter/application/di/ServiceLocator.dart';
 
-part 'MovieViewModel.g.dart';
+part 'movie_view_model.g.dart';
 
 class MovieViewModel =_MovieViewModel with _$MovieViewModel;
 
