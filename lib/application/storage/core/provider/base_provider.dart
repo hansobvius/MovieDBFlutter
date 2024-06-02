@@ -1,4 +1,4 @@
-import 'package:moviedb_flutter/application/storage/core/database/BaseDatabase.dart';
+import 'package:moviedb_flutter/application/storage/core/database/base_database.dart';
 import 'package:sqflite/sqlite_api.dart';
 
 abstract class BaseProvider<T extends BaseDatabase>{

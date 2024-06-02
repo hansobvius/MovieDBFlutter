@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:moviedb_flutter/application/business_logic/model/movie/movie_model_results.dart';
 import 'package:moviedb_flutter/application/ui/app_components/AppWidgets.dart';
-import 'components/MovieDescription.dart';
-import 'components/TItleCard.dart';
+import 'components/movie_description.dart';
+import 'components/title_card.dart';
 
 class MovieDetailScreen extends StatelessWidget{
 

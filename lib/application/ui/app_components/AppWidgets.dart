@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:moviedb_flutter/application/business_logic/helpers/ImageHelper.dart';
+import 'package:moviedb_flutter/application/business_logic/helpers/image_helper.dart';
 
 PreferredSizeWidget customAppBar(){
   return AppBar(title: Text('TheMovieDB'), centerTitle: false, backgroundColor: Colors.black);

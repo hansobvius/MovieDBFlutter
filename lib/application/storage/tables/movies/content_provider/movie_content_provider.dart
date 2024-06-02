@@ -1,5 +1,5 @@
-import 'package:moviedb_flutter/application/storage/core/provider/BaseProvider.dart';
-import 'package:moviedb_flutter/application/storage/core/provider/IProvider.dart';
+import 'package:moviedb_flutter/application/storage/core/provider/base_provider.dart';
+import 'package:moviedb_flutter/application/storage/core/provider/provider_interface.dart';
 import 'package:moviedb_flutter/application/storage/tables/movies/table_helper/MoviesResultsTable.dart';
 import 'package:sqflite/sqflite.dart';
 

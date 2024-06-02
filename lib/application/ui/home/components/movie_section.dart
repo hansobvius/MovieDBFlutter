@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:moviedb_flutter/application/business_logic/helpers/ImageHelper.dart';
+import 'package:moviedb_flutter/application/business_logic/helpers/image_helper.dart';
 import 'package:moviedb_flutter/application/business_logic/model/movie/movie_model_results.dart';
-import 'package:moviedb_flutter/application/ui/moviedetail/MovieDetailScreen.dart';
+import 'package:moviedb_flutter/application/ui/moviedetail/movie_detail_screen.dart';
 
 class MovieSection extends StatelessWidget{
 

@@ -1,5 +1,5 @@
 import 'package:flutter/foundation.dart';
-import 'package:moviedb_flutter/application/storage/tables/movies/content_provider/MoviesContentProvider.dart';
+import 'package:moviedb_flutter/application/storage/tables/movies/content_provider/movie_content_provider.dart';
 
 class MovieFavoritesRepository{
 

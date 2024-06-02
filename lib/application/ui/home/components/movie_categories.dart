@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:moviedb_flutter/application/business_logic/helpers/StringHelper.dart';
+import 'package:moviedb_flutter/application/business_logic/helpers/string_helper.dart';
 import 'package:moviedb_flutter/application/business_logic/view_model/movie_view_model.dart';
-import 'MovieSection.dart';
+import 'movie_section.dart';
 
 class MovieCategories extends StatelessWidget{
 
