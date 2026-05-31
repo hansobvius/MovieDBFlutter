@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:moviedb_flutter/application/business_logic/model/movie/MovieModelResults.dart';
+import 'package:moviedb_flutter/application/business_logic/model/movie/movie_model_results.dart';
 import 'package:moviedb_flutter/application/ui/app_components/AppWidgets.dart';
-import 'components/MovieDescription.dart';
-import 'components/TItleCard.dart';
+import 'components/movie_description.dart';
+import 'components/title_card.dart';
 
 class MovieDetailScreen extends StatelessWidget{
 
   final MovieModelResults movieResults;
 
-  MovieDetailScreen({required this.movieResults});
+  MovieDetailScreen({required  this.movieResults});
 
   @override
   Widget build(BuildContext context){
@@ -18,9 +18,9 @@ class MovieDetailScreen extends StatelessWidget{
         padding: EdgeInsets.only(bottom: 8.0),
         child: Column(
           children: [
-            MovieHeader(movieResults.backdrop_path!),
+            movieHeader(movieResults.backdropPath),
             TitleCard(movie: movieResults),
-            MovieDescription(movieResults.overview!)
+            MovieDescription(movieResults.overview)
           ],
         ),
       )

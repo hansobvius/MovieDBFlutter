@@ -1,5 +1,5 @@
-import 'package:moviedb_flutter/application/storage/core/provider/BaseProvider.dart';
-import 'package:moviedb_flutter/application/storage/core/provider/IProvider.dart';
+import 'package:moviedb_flutter/application/storage/core/provider/base_provider.dart';
+import 'package:moviedb_flutter/application/storage/core/provider/provider_interface.dart';
 import 'package:moviedb_flutter/application/storage/tables/movies/table_helper/MoviesResultsTable.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -31,15 +31,15 @@ class MovieContentProvider extends BaseProvider<MoviesResultsTable> implements I
     return await db!.update(entityDatabase.table, row, where: '$columnId = ?', whereArgs: [row[columnId]]);
   }
 
-  Future<int?> checkSavedMovie(int id) async {
+  Future<int> checkSavedMovie(int id) async {
     if(db == null) await initDataBase();
     var movieAlreadySaved = Sqflite.firstIntValue(
         await db!.rawQuery("SELECT EXISTS(SELECT 1 FROM ${entityDatabase.table} WHERE id=$id)")
     );
-    return movieAlreadySaved;
+    return movieAlreadySaved!;
   }
 
-  Future deleteRow(int? id) async {
+  Future deleteRow(int id) async {
     await db!.rawDelete("DELETE FROM ${entityDatabase.table} WHERE id=$id");
   }
 }

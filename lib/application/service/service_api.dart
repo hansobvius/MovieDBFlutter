@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:moviedb_flutter/application/business_logic/model/movie/MovieModel.dart';
+import 'package:moviedb_flutter/application/business_logic/model/movie/movie_model.dart';
 import 'package:http/http.dart' as http;
 
 class ServiceApi{
@@ -13,7 +13,7 @@ class ServiceApi{
 
     final http.Client client = http.Client();
 
-    final response = await client.get(Uri.parse("${BASE_URL}${value}?api_key=${TOKEN}&language=${DEFAULT_LANGUAGE}&page=${DEFAULT_PAGE}"));
+    final response = await client.get(Uri.parse("$BASE_URL$value?api_key=$TOKEN&language=$DEFAULT_LANGUAGE&page=$DEFAULT_PAGE"));
 
     if(response.statusCode == 200){
       print("Result: ${response.body}");
@@ -24,8 +24,8 @@ class ServiceApi{
   }
 
   MovieModel parseModel(String responseBody){
-    Map<String, dynamic> obj = jsonDecode(responseBody);
-    var movies = MovieModel.fromJson(obj);
+    Map obj = jsonDecode(responseBody);
+    var movies = MovieModel.fromJson(obj as Map<String, dynamic>);
     return movies;
   }
 }
