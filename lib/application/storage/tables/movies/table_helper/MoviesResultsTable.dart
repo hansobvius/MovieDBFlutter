@@ -1,4 +1,4 @@
-import 'package:moviedb_flutter/application/storage/core/database/BaseDatabase.dart';
+import 'package:moviedb_flutter/application/storage/core/database/base_database.dart';
 import 'package:sqflite_common/sqlite_api.dart';
 
 class MoviesResultsTable extends BaseDatabase{

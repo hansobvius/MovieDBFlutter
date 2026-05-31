@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'MovieModel.dart';
+part of 'movie_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
@@ -8,8 +8,8 @@ part of 'MovieModel.dart';
 
 MovieModel _$MovieModelFromJson(Map<String, dynamic> json) => MovieModel(
       json['page'] as int,
-      json['total_results'] as int,
-      json['total_pages'] as int,
+      json['totalResults'] as int,
+      json['totalPages'] as int,
       (json['results'] as List<dynamic>)
           .map((e) => MovieModelResults.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -18,7 +18,7 @@ MovieModel _$MovieModelFromJson(Map<String, dynamic> json) => MovieModel(
 Map<String, dynamic> _$MovieModelToJson(MovieModel instance) =>
     <String, dynamic>{
       'page': instance.page,
-      'total_results': instance.total_results,
-      'total_pages': instance.total_pages,
+      'totalResults': instance.totalResults,
+      'totalPages': instance.totalPages,
       'results': instance.results.map((e) => e.toJson()).toList(),
     };

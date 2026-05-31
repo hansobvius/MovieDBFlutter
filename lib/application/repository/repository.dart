@@ -1,1 +1,1 @@
-export 'MovieRepository.dart';
+export 'movie_repository.dart';

@@ -1,15 +1,16 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'MovieViewModel.dart';
+part of 'movie_view_model.dart';
 
 // **************************************************************************
 // StoreGenerator
 // **************************************************************************
 
-// ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
+// ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$MovieViewModel on _MovieViewModel, Store {
-  final _$isSavedAtom = Atom(name: '_MovieViewModel.isSaved');
+  late final _$isSavedAtom =
+      Atom(name: '_MovieViewModel.isSaved', context: context);
 
   @override
   bool? get isSaved {
@@ -24,7 +25,8 @@ mixin _$MovieViewModel on _MovieViewModel, Store {
     });
   }
 
-  final _$movieModelAtom = Atom(name: '_MovieViewModel.movieModel');
+  late final _$movieModelAtom =
+      Atom(name: '_MovieViewModel.movieModel', context: context);
 
   @override
   ObservableList<MovieModel>? get movieModel {
@@ -39,7 +41,8 @@ mixin _$MovieViewModel on _MovieViewModel, Store {
     });
   }
 
-  final _$favoriteMoviesAtom = Atom(name: '_MovieViewModel.favoriteMovies');
+  late final _$favoriteMoviesAtom =
+      Atom(name: '_MovieViewModel.favoriteMovies', context: context);
 
   @override
   ObservableList<MovieModelResults>? get favoriteMovies {
@@ -54,8 +57,8 @@ mixin _$MovieViewModel on _MovieViewModel, Store {
     });
   }
 
-  final _$checkFavoriteMovieAsyncAction =
-      AsyncAction('_MovieViewModel.checkFavoriteMovie');
+  late final _$checkFavoriteMovieAsyncAction =
+      AsyncAction('_MovieViewModel.checkFavoriteMovie', context: context);
 
   @override
   Future<dynamic> checkFavoriteMovie(int id) {
@@ -63,8 +66,8 @@ mixin _$MovieViewModel on _MovieViewModel, Store {
         .run(() => super.checkFavoriteMovie(id));
   }
 
-  final _$_MovieViewModelActionController =
-      ActionController(name: '_MovieViewModel');
+  late final _$_MovieViewModelActionController =
+      ActionController(name: '_MovieViewModel', context: context);
 
   @override
   void getMovieService() {

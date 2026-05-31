@@ -1,16 +1,16 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'MovieModelResults.dart';
+import 'movie_model_results.dart';
 
-part 'MovieModel.g.dart';
+part 'movie_model.g.dart';
 
 @JsonSerializable(explicitToJson: true)
 class MovieModel{
   int page;
-  int total_results;
-  int total_pages;
+  int totalResults;
+  int totalPages;
   List<MovieModelResults> results;
 
-  MovieModel(this.page, this.total_results, this.total_pages, this.results);
+  MovieModel(this.page, this.totalResults, this.totalPages, this.results);
 
   factory MovieModel.fromJson(Map<String, dynamic> json) => _$MovieModelFromJson(json);
 

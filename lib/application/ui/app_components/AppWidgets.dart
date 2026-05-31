@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:moviedb_flutter/application/business_logic/helpers/ImageHelper.dart';
+import 'package:moviedb_flutter/application/business_logic/helpers/image_helper.dart';
 
-PreferredSizeWidget CustomAppBar(){
+PreferredSizeWidget customAppBar(){
   return AppBar(title: Text('TheMovieDB'), centerTitle: false, backgroundColor: Colors.black);
 }
 
-Widget MovieHeader(String posterPath){
+Widget movieHeader(String posterPath){
   return   Container(
     child: Image(
       image: NetworkImage(getImage(posterPath)),
@@ -13,7 +13,7 @@ Widget MovieHeader(String posterPath){
   );
 }
 
-Widget ProgressBar(){
+Widget progressBar(){
   return CircularProgressIndicator(
     backgroundColor: Colors.black,
     valueColor: AlwaysStoppedAnimation<Color>(Colors.white),

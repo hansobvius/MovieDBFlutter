@@ -1,9 +1,9 @@
 import 'package:mobx/mobx.dart';
-import 'package:moviedb_flutter/application/business_logic/model/movie/MovieModel.dart';
-import 'package:moviedb_flutter/application/business_logic/model/movie/MovieModelResults.dart';
-import 'package:moviedb_flutter/application/di/ServiceLocator.dart';
+import 'package:moviedb_flutter/application/business_logic/model/movie/movie_model.dart';
+import 'package:moviedb_flutter/application/business_logic/model/movie/movie_model_results.dart';
+import 'package:moviedb_flutter/application/di/service_locator.dart';
 
-part 'MovieViewModel.g.dart';
+part 'movie_view_model.g.dart';
 
 class MovieViewModel =_MovieViewModel with _$MovieViewModel;
 
@@ -15,13 +15,15 @@ abstract class _MovieViewModel with Store {
   final categories = ["popular", "top_rated", "upcoming"];
 
   @observable
-  bool? isSaved;
+  Observable<bool> isSaved = Observable(false);
 
   @observable
-  ObservableList<MovieModel>? movieModel = ObservableList<MovieModel>().asObservable();
+  ObservableList<MovieModel> movieModel = ObservableList<MovieModel>()
+      .asObservable();
 
   @observable
-  ObservableList<MovieModelResults>? favoriteMovies = ObservableList<MovieModelResults>().asObservable();
+  ObservableList<MovieModelResults> favoriteMovies = ObservableList<
+      MovieModelResults>().asObservable();
 
 
   // TODO - consult repository instead service api directly
@@ -29,7 +31,7 @@ abstract class _MovieViewModel with Store {
   void getMovieService()  {
      categories.forEach((element) {
       service.serviceInterface().serviceApi(element).then((value) =>
-          movieModel!.add(value)
+          movieModel.add(value)
       );
     });
   }
@@ -37,11 +39,11 @@ abstract class _MovieViewModel with Store {
   @action
   void getFavoriteMovies()   {
      movieRepository.queryListContent().then((values) => {
-        if(values != null) favoriteMovies!.clear(),
+        favoriteMovies.clear(),
         values.forEach((element) {
           var favorite = getResultsFromDatabase(element);
           print("FROM DATABASE: $element");
-          favoriteMovies!.add(favorite);
+          favoriteMovies.add(favorite);
         }),
     });
   }
@@ -51,23 +53,23 @@ abstract class _MovieViewModel with Store {
       print("CHECK_FAVORITE");
       movieRepository.movieSaved(id).then((value) => {
         print("MOVIE ${value == 1}"),
-        this.isSaved = value == 1,
+        this.isSaved.value = value == 1
       });
   }
 
   @action
-  void setMovieFavorite(MovieModelResults? moviesResults)  {
-    if(!isSaved!)
-       movieRepository.insertContent(moviesResults!.toJson()).then((_) => {
+  void setMovieFavorite(MovieModelResults moviesResults)  {
+    if(!isSaved.value)
+       movieRepository.insertContent(moviesResults.toJson()).then((_) => {
         print("MOVIE SAVED"),
         getFavoriteMovies()
       });
-    else  movieRepository.deleteMovie(moviesResults!.id).then((value) => print("MOVIE DELETED"));
-   checkFavoriteMovie(moviesResults.id!);
+    else  movieRepository.deleteMovie(moviesResults.id).then((value) => print("MOVIE DELETED"));
+   checkFavoriteMovie(moviesResults.id);
   }
 
   void printValue() {
-      movieModel!.forEach((element) {
+      movieModel.forEach((element) {
         element.results.forEach((result) {
           print("Response: ${element.results}");
         });
@@ -77,24 +79,25 @@ abstract class _MovieViewModel with Store {
   MovieModelResults getResultsFromDatabase(Map<String, dynamic> json) =>
       MovieModelResults(
         popularity: returnStringToDouble(json['popularity'] as String),
-        vote_count: json['vote_count'] as int,
+        voteCount: json['vote_count'] as int,
         video: returnIntToBool(json['video'] as int),
-        poster_path: json['poster_path'] as String,
+        posterPath: json['poster_path'] as String,
         id: json['id'] as int,
         adult: returnIntToBool(json['adult'] as int),
-        backdrop_path: json['backdrop_path'] as String,
-        original_language: json['original_language'] as String,
-        original_title: json['original_title'] as String,
+        backdropPath: json['backdrop_path'] as String,
+        originalLanguage: json['original_language'] as String,
+        originalTitle: json['original_title'] as String,
         title: json['title'] as String,
-        vote_average: returnStringToDouble(json['vote_average'] as String),
+        voteAverage: returnStringToDouble(json['vote_average'] as String),
         overview: json['overview'] as String,
-        release_date: json['release_date'] as String,
+        releaseDate: json['release_date'] as String,
       );
 
   double returnStringToDouble(String value) => double.parse(value);
 
   bool returnIntToBool(int value){
     switch(value){
+      case 0: return false;
       case 1: return true;
       default: return false;
     }

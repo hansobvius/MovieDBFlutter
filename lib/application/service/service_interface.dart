@@ -1,6 +1,6 @@
-import 'package:moviedb_flutter/application/service/ServiceImplementation.dart';
+import 'package:moviedb_flutter/application/service/service_implementation.dart';
 
-import 'ServiceApi.dart';
+import 'service_api.dart';
 
 class IService extends ServiceImplementation<ServiceApi>{
 

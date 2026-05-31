@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:moviedb_flutter/application/business_logic/helpers/ImageHelper.dart';
-import 'package:moviedb_flutter/application/business_logic/model/movie/MovieModelResults.dart';
-import 'package:moviedb_flutter/application/business_logic/view_model/MovieViewModel.dart';
-import 'package:moviedb_flutter/application/di/ServiceLocator.dart';
-import 'package:moviedb_flutter/application/ui/moviedetail/MovieDetailScreen.dart';
+import 'package:moviedb_flutter/application/business_logic/helpers/image_helper.dart';
+import 'package:moviedb_flutter/application/business_logic/model/movie/movie_model_results.dart';
+import 'package:moviedb_flutter/application/business_logic/view_model/movie_view_model.dart';
+import 'package:moviedb_flutter/application/di/service_locator.dart';
+import 'package:moviedb_flutter/application/ui/moviedetail/movie_detail_screen.dart';
 import 'package:provider/provider.dart';
 
 class MovieFavorites extends StatefulWidget{
@@ -15,12 +15,9 @@ class MovieFavorites extends StatefulWidget{
 
 class _MovieFavorites extends State<MovieFavorites>{
 
-  late MovieViewModel _store;
-
   @override
   void initState(){
-    _store = ServiceLocator.instance.movieViewModel
-        ..getFavoriteMovies();
+    ServiceLocator.instance.movieViewModel.getFavoriteMovies();
     super.initState();
   }
 
@@ -38,11 +35,11 @@ class _MovieFavorites extends State<MovieFavorites>{
       builder: (_context) {
         var favoriteStore = Provider.of<MovieViewModel>(context);
         return Offstage(
-          offstage: favoriteStore.favoriteMovies!.isNotEmpty ? false : true,
+          offstage: favoriteStore.favoriteMovies.isNotEmpty ? false : true,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              if(favoriteStore.favoriteMovies!.isNotEmpty) Padding(
+              if (favoriteStore.favoriteMovies.isNotEmpty) Padding(
                 padding: const EdgeInsets.only(left: 8.0, top: 8.0),
                 child: Text(
                   "favorites",
@@ -52,10 +49,10 @@ class _MovieFavorites extends State<MovieFavorites>{
                 ),
               ),
               Container(
-                height: favoriteStore.favoriteMovies!.isNotEmpty ? 200 : 0,
+                height: favoriteStore.favoriteMovies.isNotEmpty ? 200 : 0,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  itemCount: _store.favoriteMovies!.length,
+                  itemCount: favoriteStore.favoriteMovies.length,
                   itemBuilder: (BuildContext _context, int index) {
                     return Container(
                       padding: EdgeInsets.all(8.0),
@@ -64,11 +61,11 @@ class _MovieFavorites extends State<MovieFavorites>{
                         children: [
                           GestureDetector(
                             onTap: () {
-                              navigate(context, _store.favoriteMovies![index]);
+                              navigate(context, favoriteStore.favoriteMovies[index]);
                             },
                             child: Image(
                               image: NetworkImage(getImage(
-                                  favoriteStore.favoriteMovies![index].poster_path!)),
+                                  favoriteStore.favoriteMovies[index].posterPath)),
                             ),
                           )
                         ]

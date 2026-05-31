@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:moviedb_flutter/application/business_logic/helpers/ImageHelper.dart';
-import 'package:moviedb_flutter/application/business_logic/model/movie/MovieModelResults.dart';
-import 'package:moviedb_flutter/application/ui/moviedetail/MovieDetailScreen.dart';
+import 'package:moviedb_flutter/application/business_logic/helpers/image_helper.dart';
+import 'package:moviedb_flutter/application/business_logic/model/movie/movie_model_results.dart';
+import 'package:moviedb_flutter/application/ui/moviedetail/movie_detail_screen.dart';
 
 class MovieSection extends StatelessWidget{
 
   final List<MovieModelResults> movieResults;
 
-  MovieSection({required this.movieResults});
+  MovieSection({ required this.movieResults });
   
   void navigate(BuildContext context, MovieModelResults movie){
     Navigator.push(
@@ -35,7 +35,7 @@ class MovieSection extends StatelessWidget{
                       navigate(context, this.movieResults[index]);
                     },
                     child: Image(
-                      image: NetworkImage(getImage(this.movieResults[index].poster_path!)),
+                      image: NetworkImage(getImage(this.movieResults[index].posterPath)),
                     ),
                   )
                 ]
