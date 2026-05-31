@@ -15,12 +15,9 @@ class MovieFavorites extends StatefulWidget{
 
 class _MovieFavorites extends State<MovieFavorites>{
 
-  late MovieViewModel _store;
-
   @override
   void initState(){
-    _store = ServiceLocator.instance.movieViewModel
-        ..getFavoriteMovies();
+    ServiceLocator.instance.movieViewModel.getFavoriteMovies();
     super.initState();
   }
 
@@ -55,7 +52,7 @@ class _MovieFavorites extends State<MovieFavorites>{
                 height: favoriteStore.favoriteMovies.isNotEmpty ? 200 : 0,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  itemCount: _store!.favoriteMovies.length ?? 0,
+                  itemCount: favoriteStore.favoriteMovies.length,
                   itemBuilder: (BuildContext _context, int index) {
                     return Container(
                       padding: EdgeInsets.all(8.0),
@@ -64,7 +61,7 @@ class _MovieFavorites extends State<MovieFavorites>{
                         children: [
                           GestureDetector(
                             onTap: () {
-                              navigate(context, _store.favoriteMovies[index]);
+                              navigate(context, favoriteStore.favoriteMovies[index]);
                             },
                             child: Image(
                               image: NetworkImage(getImage(
