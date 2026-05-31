@@ -13,13 +13,13 @@ mixin _$MovieViewModel on _MovieViewModel, Store {
       Atom(name: '_MovieViewModel.isSaved', context: context);
 
   @override
-  Observable<bool> get isSaved {
+  bool? get isSaved {
     _$isSavedAtom.reportRead();
     return super.isSaved;
   }
 
   @override
-  set isSaved(Observable<bool> value) {
+  set isSaved(bool? value) {
     _$isSavedAtom.reportWrite(value, super.isSaved, () {
       super.isSaved = value;
     });
@@ -29,13 +29,13 @@ mixin _$MovieViewModel on _MovieViewModel, Store {
       Atom(name: '_MovieViewModel.movieModel', context: context);
 
   @override
-  ObservableList<MovieModel> get movieModel {
+  ObservableList<MovieModel>? get movieModel {
     _$movieModelAtom.reportRead();
     return super.movieModel;
   }
 
   @override
-  set movieModel(ObservableList<MovieModel> value) {
+  set movieModel(ObservableList<MovieModel>? value) {
     _$movieModelAtom.reportWrite(value, super.movieModel, () {
       super.movieModel = value;
     });
@@ -45,13 +45,13 @@ mixin _$MovieViewModel on _MovieViewModel, Store {
       Atom(name: '_MovieViewModel.favoriteMovies', context: context);
 
   @override
-  ObservableList<MovieModelResults> get favoriteMovies {
+  ObservableList<MovieModelResults>? get favoriteMovies {
     _$favoriteMoviesAtom.reportRead();
     return super.favoriteMovies;
   }
 
   @override
-  set favoriteMovies(ObservableList<MovieModelResults> value) {
+  set favoriteMovies(ObservableList<MovieModelResults>? value) {
     _$favoriteMoviesAtom.reportWrite(value, super.favoriteMovies, () {
       super.favoriteMovies = value;
     });
@@ -92,7 +92,7 @@ mixin _$MovieViewModel on _MovieViewModel, Store {
   }
 
   @override
-  void setMovieFavorite(MovieModelResults moviesResults) {
+  void setMovieFavorite(MovieModelResults? moviesResults) {
     final _$actionInfo = _$_MovieViewModelActionController.startAction(
         name: '_MovieViewModel.setMovieFavorite');
     try {
