@@ -20,7 +20,7 @@ class _TitleCardState extends State<TitleCard>{
   @override
   void initState() {
     _store = ServiceLocator.instance.movieViewModel..
-      checkFavoriteMovie(widget.movie.id!);
+      checkFavoriteMovie(widget.movie.id);
     super.initState();
   }
 
@@ -47,10 +47,10 @@ class _TitleCardState extends State<TitleCard>{
               builder: (context){
                 return IconButton(
                   icon: Icon(
-                      (_store.isSaved != null && _store.isSaved!)
+                      _store.isSaved
                           ? Icons.favorite
                           : Icons.favorite_border,
-                      color: (_store.isSaved != null && _store.isSaved!)
+                      color: _store.isSaved
                           ? Colors.yellow
                           : null
                   ),

@@ -15,7 +15,7 @@ abstract class _MovieViewModel with Store {
   final categories = ["popular", "top_rated", "upcoming"];
 
   @observable
-  Observable<bool> isSaved = Observable(false);
+  bool isSaved = false;
 
   @observable
   ObservableList<MovieModel> movieModel = ObservableList<MovieModel>()
@@ -53,13 +53,13 @@ abstract class _MovieViewModel with Store {
       print("CHECK_FAVORITE");
       movieRepository.movieSaved(id).then((value) => {
         print("MOVIE ${value == 1}"),
-        this.isSaved.value = value == 1
+        this.isSaved = value == 1
       });
   }
 
   @action
   void setMovieFavorite(MovieModelResults moviesResults)  {
-    if(!isSaved.value)
+    if(!isSaved)
        movieRepository.insertContent(moviesResults.toJson()).then((_) => {
         print("MOVIE SAVED"),
         getFavoriteMovies()
